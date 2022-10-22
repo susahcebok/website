@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Create world map charts with svgMap · Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="svgMap is a JavaScript library that lets you easily create an interactable world map comparing customizable data for each country.">
+<link rel="icon" href="favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/" class="active">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<div class="article-author">May 2019</div>
+
+<h1>Create world map charts with svgMap</h1>
+
+<p>svgMap is a JavaScript library that lets you easily create an interactable world map comparing customizable data for each country.</p>
+
+<h2>Install</h2>
+
+<h3 style="margin-top: 0;">ES6</h3>
+
+<p class="margin">You can install svgMap via <a href="https://www.npmjs.com/package/svgmap" target="_blank">npm</a>:</p>
+
+<div class="syntax tt">
+<pre class="text" style="font-family:monospace;">npm install --save svgmap</pre></div>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #FF0000;">import</span> svgMap from <span style="color: #3366CC;">'svgmap'</span><span style="color: #339933;">;</span>
+<span style="color: #FF0000;">import</span> <span style="color: #3366CC;">'svgmap/dist/svgMap.min.css'</span><span style="color: #339933;">;</span></pre></div>
+
+<h3 style="margin-top: 30px;">CDN</h3>
+
+<p>
+  <a href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a> is a great CDN choice for svgMap:
+</p>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">script</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">script</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">script</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;https://cdn.jsdelivr.net/gh/StephanWagner/svgMap@v2.7.2/dist/svgMap.min.js&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">script</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">link</span> <span style="color: #000066;">href</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;https://cdn.jsdelivr.net/gh/StephanWagner/svgMap@v2.7.2/dist/svgMap.min.css&quot;</span> <span style="color: #000066;">rel</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;stylesheet&quot;</span>&gt;</span></pre></div>
+
+<h2>Usage</h2>
+
+<p>
+  Create an HTML element where to show your map, then use JavaScript to initialize:
+</p>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">div</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;svgMap&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">div</span>&gt;</span></pre>
+</div>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> svgMap<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>
+  targetElementID<span style="color: #339933;">:</span> <span style="color: #3366CC;">'svgMap'</span><span style="color: #339933;">,</span>
+  data<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+    data<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+      gdp<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+        name<span style="color: #339933;">:</span> <span style="color: #3366CC;">'GDP per capita'</span><span style="color: #339933;">,</span>
+        format<span style="color: #339933;">:</span> <span style="color: #3366CC;">'{0} USD'</span><span style="color: #339933;">,</span>
+        thousandSeparator<span style="color: #339933;">:</span> <span style="color: #3366CC;">','</span><span style="color: #339933;">,</span>
+        thresholdMax<span style="color: #339933;">:</span> <span style="color: #CC0000;">50000</span><span style="color: #339933;">,</span>
+        thresholdMin<span style="color: #339933;">:</span> <span style="color: #CC0000;">1000</span>
+      <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+      change<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+        name<span style="color: #339933;">:</span> <span style="color: #3366CC;">'Change to year before'</span><span style="color: #339933;">,</span>
+        format<span style="color: #339933;">:</span> <span style="color: #3366CC;">'{0} %'</span>
+      <span style="color: #009900;">&#125;</span>
+    <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+    applyData<span style="color: #339933;">:</span> <span style="color: #3366CC;">'gdp'</span><span style="color: #339933;">,</span>
+    values<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+      AF<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>gdp<span style="color: #339933;">:</span> <span style="color: #CC0000;">587</span><span style="color: #339933;">,</span> change<span style="color: #339933;">:</span> <span style="color: #CC0000;">4.73</span><span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+      AL<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>gdp<span style="color: #339933;">:</span> <span style="color: #CC0000;">4583</span><span style="color: #339933;">,</span> change<span style="color: #339933;">:</span> <span style="color: #CC0000;">11.09</span><span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+      DZ<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>gdp<span style="color: #339933;">:</span> <span style="color: #CC0000;">4293</span><span style="color: #339933;">,</span> change<span style="color: #339933;">:</span> <span style="color: #CC0000;">10.01</span><span style="color: #009900;">&#125;</span>
+      <span style="color: #006600; font-style: italic;">// ...</span>
+    <span style="color: #009900;">&#125;</span>
+  <span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<p class="margin">
+  This example code creates a world map with the GDP per capita and its change to the previous year:
+</p>
+
+<div id="svgMapDemoGDP" style="margin: 30px 0"></div>
+
+<script>
+$('document').ready(function () {
+  new svgMap({
+    targetElementID: 'svgMapDemoGDP',
+    mouseWheelZoomEnabled: false,
+    data: svgMapDataGPD
+  });
+});
+</script>
+
+<h2>Options</h2>
+
+<p>
+  You can pass the following options into svgMap:
+</p>
+
+
+<table class="api no-title" style="margin-top: 20px">
+
+<tr class="option odd">
+<td>targetElementID</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The ID of the element where the world map will render
+  <div style="font-weight: bold;">Required</div>
+</td>
+</tr>
+
+<tr class="option">
+<td>minZoom<br>maxZoom</td>
+<td class="value"><span class="type">float</span></td>
+<td>
+  Minimal and maximal zoom level<br>
+  Default: <span class="code tt">1</span> for <span class="code tt">minZoom</span>, <span class="code tt">25</span> for <span class="code tt">maxZoom</span>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>initialZoom</td>
+<td class="value"><span class="type">float</span></td>
+<td>
+  Initial zoom level<br>
+  Default: <span class="code tt">1.06</span>
+</td>
+</tr>
+
+<tr class="option">
+<td>initialPan</td>
+<td class="value"><span class="type">object</span></td>
+<td>
+  Initial pan on x and y axis, e.g. <span class="code tt">{ x: 120, y: 60 }</span><br>
+  Default: <span class="code tt">{ x: 0, y: 0 }</span>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>zoomScaleSensitivity</td>
+<td class="value"><span class="type">float</span></td>
+<td>
+  Sensitivity when zooming<br>
+  Default: <span class="code tt">0.2</span>
+</td>
+</tr>
+
+<tr class="option">
+<td>mouseWheelZoomEnabled</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>
+  Enables or disables zooming with the scroll wheel<br>
+  Default: <span class="code tt">true</span>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>mouseWheelZoomWithKey</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>
+  Allow zooming only when one of the following keys is pressed: <span class="code tt">SHIFT</span>, <span class="code tt">CONTROL</span>, <span class="code tt">ALT</span>, <span class="code tt">COMMAND</span>, <span class="code tt">OPTION</span><br>
+  Default: <span class="code tt">false</span>
+</td>
+</tr>
+
+<tr class="option">
+<td>mouseWheelKeyMessage</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The message when trying to scroll without a key<br>
+  Default: <span class="code tt">'Press the [ALT] key to zoom'</span>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>mouseWheelKeyMessageMac</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+The message when trying to scroll without a key on MacOS<br>
+  Default: <span class="code tt">'Press the [COMMAND] key to zoom'</span>
+</td>
+</tr>
+
+<tr class="option">
+<td>colorMax<br>colorMin<br>colorNoData</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  Color for highest value <span class="code tt">colorMax</span>, lowest value <span class="code tt">colorMin</span> and no data available <span class="code tt">colorNoData</span><br>
+  Default: <span class="code tt">'#CC0033'</span>, <span class="code tt">'#FFE5D9'</span>, <span class="code tt">'#E2E2E2'</span>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>flagType</td>
+<td class="value"><span class="string">'emoji'</span>, <span class="string">'image'</span></td>
+<td>
+  The type of the flag in the tooltip<br>
+  Default: <span class="code tt">'image'</span>
+</td>
+</tr>
+
+<tr class="option">
+<td>flagURL</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The URL to the flags when using flag type <span class="code tt">'image'</span>. The placeholder <span class="code tt">{0}</span> will get replaced with the lowercase <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a> country code<br>
+  Default: <span class="code tt">'https://cdn.jsdelivr.net/gh/hjnilsson/country-flags@latest/svg/{0}.svg'</span>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>hideFlag</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>
+  Hide the flag in tooltips<br>
+  Default: <span class="code tt">false</span>
+</td>
+</tr>
+
+<tr class="option">
+<td>noDataText</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The text to be shown when no data is present<br>
+  Default: <span class="code tt">'No data available'</span>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>touchLink</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>
+  Set to <span class="code tt">true</span> to open the link (see <span class="code tt">data.values.link</span>) on mobile devices, by default the tooltip will be shown.
+</td>
+</tr>
+
+<tr class="option">
+<td>onGetTooltip</td>
+<td class="value"><span class="type">function</span></td>
+<td>
+  Called when a tooltip is created to custimize the tooltip content (<span class="code tt">function (tooltipDiv, countryID, countryValues) { return 'Custom HTML'; }</span>)
+</td>
+</tr>
+
+<tr class="option odd">
+<td>countries: {<br>
+&nbsp;&nbsp;// ...<br>
+}</td>
+<td class="value"></td>
+<td>
+  Additional options specific to countries:
+</td>
+</tr>
+
+<tr class="option">
+<td>↳ EH</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>
+  When set to <span class="code tt">false</span>, Western Sahara (EH) will be combined with Morocco (MA)<br>
+  Default: <span class="code tt">true</span>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>↳ Crimea</td>
+<td class="value"><span class="string">'UA'</span>, <span class="string">'RU'</span></td>
+<td>
+  Crimea: Set to <span class="code tt">'RU'</span> to make the Crimea part of Russia, by default it is part of the Ukraine<br>
+  Default: <span class="code tt">'UA'</span>
+</td>
+</tr>
+
+<tr class="option">
+<td>data: {<br>
+&nbsp;&nbsp;// ...<br>
+}</td>
+<td class="value"></td>
+<td>
+  The chart data to use for coloring and to show in the tooltip.
+  Use a unique data-id as key and provide following options as value:
+</td>
+</tr>
+
+<tr class="option odd">
+<td>↳ name</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The name of the data, it will be shown in the tooltip
+</td>
+</tr>
+
+<tr class="option">
+<td>↳ format</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The format for the data value, <span class="code tt">{0}</span> will be replaced with the actual value
+</td>
+</tr>
+
+<tr class="option odd">
+<td>↳ thousandSeparator</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The character to use as thousand separator<br>
+  Default: <span class="code tt">','</span>
+</td>
+</tr>
+
+<tr class="option">
+<td>↳ thresholdMax</td>
+<td class="value"><span class="type">number</span></td>
+<td>
+  Maximal value to use for coloring calculations
+</td>
+</tr>
+
+<tr class="option odd">
+<td>↳ thresholdMin</td>
+<td class="value"><span class="type">number</span></td>
+<td>
+  Minimum value to use for coloring calculations
+</td>
+</tr>
+
+<tr class="option">
+<td>↳ applyData</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The ID (key) of the data that will be used for coloring
+</td>
+</tr>
+
+<tr class="option odd">
+<td>↳ values</td>
+<td class="value"><span class="type">object</span></td>
+<td>
+  An object with the <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a> country code as key and the chart data for each country as value
+</td>
+</tr>
+
+<tr class="option">
+<td>&nbsp; ↳ color</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  Forces a color for this country
+</td>
+</tr>
+
+<tr class="option odd">
+<td>&nbsp; ↳ link</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  An URL to redirect to when clicking the country
+</td>
+</tr>
+
+<tr class="option">
+<td>&nbsp; ↳ linkTarget</td>
+<td class="value"><span class="type">string</span></td>
+<td>
+  The target of the link. By default the link will be opened in the same tab. Use <span class="code tt">'_blank'</span> to open the link in a new tab
+</td>
+</tr>
+
+<tr class="option odd">
+<td>countryNames</td>
+<td class="value"><span class="type">object</span></td>
+<td>
+  An object with the <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a> country code as key and the country name as value
+</td>
+</tr>
+
+</table>
+
+<h2>Localize</h2>
+
+<p>
+  Use the option <span class="code tt">countryNames</span> to translate country names. In the folder <span class="code tt">demo/html/local</span> you can find translations in following languages:<br>
+  <span style="font-weight: bold;">Arabic, Chinese, English, French, German, Hindi, Portuguese, Russian, Spanish, Urdu</span>
+</p>
+
+<p class="margin">
+  To create your own translations, check out <a href="https://github.com/umpirsky/country-list" target="_blank">country-list</a> by <a href="https://github.com/umpirsky" target="_blank">Saša Stamenković</a>.
+</p>
+
+<h2>Attribution</h2>
+
+<p>
+  If you need more detailed maps or more options for your data, there is a great open source project
+  called <a href="https://github.com/datawrapper/datawrapper" target="_blank">datawrapper</a> out there,
+  with a lot more power than svgMap.
+  <a href="https://www.highcharts.com/maps/demo" target="_blank">Highmaps</a> is also a great alternative.
+</p>
+
+<p class="margin">
+  svgMap uses <a href="https://github.com/ariutta/svg-pan-zoom" target="_blank">svg-pan-zoom</a> by <a href="https://github.com/ariutta" target="_blank">Anders Riutta</a>.
+</p>
+
+<p class="margin">
+  The country flag images are from <a href="https://github.com/hjnilsson/country-flags" target="_blank">country-flags</a> by <a href="https://github.com/hjnilsson" target="_blank">Hampus Nilsson</a>.
+</p>
+
+<p class="margin">
+  Most data in the demos was taken from <a href="https://www.wikipedia.org" target="_blank">Wikipedia</a>.
+</p>
+
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+<script src="/js/svgmap.js"></script>
+</body>
+</html>
