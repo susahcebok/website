@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Minify JavaScript with UglifyJS 3 · Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="Compress your JavaScript files online with UglifyJS 3 and reduce your websites requests and filesizes.">
+<link rel="icon" type="image/png" href="/img/favicon/favicon-code-512.png">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="/manifest.json?5f1a">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/">Blog</a>
+    <a href="/tools" class="active">Tools</a>
+    <a href="/jBox">jBox</a>
+    <a href="/" id="stephan"><span>Stephan Wagner</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<div id="minify-options" onclick="toggleMinifyOptions()"><span class="icon-options"></span><span class="minify-options-text">Options</span></div>
+
+<h1>Minify JavaScript with UglifyJS 3</h1>
+
+<div id="mo-wrapper">
+  <div id="mo-container" class="clearfix">
+    <div class="mo-options-container">
+<textarea id="mo-options" spellcheck="false" autocomplete="false">// Documentation: https://www.npmjs.com/package/uglify-es
+{
+  parse: {
+    bare_returns     : false,
+    ecma             : 8,
+    html5_comments   : true,
+    shebang          : true
+  },
+  compress: {
+    arrows           : true,
+    booleans         : true,
+    collapse_vars    : true,
+    comparisons      : true,
+    computed_props   : true,
+    conditionals     : true,
+    dead_code        : true,
+    drop_console     : false,
+    drop_debugger    : true,
+    ecma             : 5,
+    evaluate         : true,
+    expression       : false,
+    global_defs      : {},
+    hoist_funs       : false,
+    hoist_props      : true,
+    hoist_vars       : false,
+    if_return        : true,
+    inline           : true,
+    join_vars        : true,
+    keep_fargs       : true,
+    keep_infinity    : false,
+    loops            : true,
+    negate_iife      : true,
+    passes           : 1,
+    properties       : true,
+    pure_getters     : 'strict',
+    pure_funcs       : null,
+    reduce_funcs     : true,
+    reduce_vars      : true,
+    sequences        : true,
+    side_effects     : true,
+    switches         : true,
+    top_retain       : null,
+    typeofs          : true,
+    unsafe           : false,
+    unsafe_arrows    : false,
+    unsafe_comps     : false,
+    unsafe_Function  : false,
+    unsafe_math      : false,
+    unsafe_methods   : false,
+    unsafe_proto     : false,
+    unsafe_regexp    : false,
+    unsafe_undefined : false,
+    unused           : true
+  },
+  mangle: {
+    eval             : false,
+    properties       : {
+      builtins       : false,
+      debug          : false,
+      keep_quoted    : false,
+      regex          : null,
+      reserved        : []
+    },
+    reserved         : []
+  },
+  output: {
+    ascii_only       : false,
+    beautify         : false,
+    bracketize       : false,
+    comments         : 'some',
+    ecma             : 5,
+    indent_level     : 4,
+    indent_start     : 0,
+    inline_script    : false,
+    keep_quoted_props: false,
+    max_line_len     : false,
+    preamble         : null,
+    preserve_line    : false,
+    quote_keys       : false,
+    quote_style      : 0,
+    semicolons       : true,
+    shebang          : true,
+    webkit           : false,
+    width            : 80,
+    wrap_iife        : false
+  },
+  keep_classnames    : false,
+  keep_fnames        : false,
+  ie8                : false,
+  nameCache          : null,
+  safari10           : false,
+  toplevel           : false,
+  warnings           : false
+}
+</textarea>
+
+    </div>
+    <div class="mo-buttons clearfix">
+      <button id="mo-reuglify" class="button" onclick="reUglify()" disabled="disabled">Re-Minify</button>
+      <div class="link mo-reset" onclick="resetOptions()">Reset options</div>
+    </div>
+  </div>
+</div>
+
+<input type="file" class="select-files" id="select-files-uglifyjs" name="select-files[]" multiple>
+
+<div class="drop-area" id="drop-area-uglifyjs"><span>Drag & drop your files here…</span></div>
+
+<div id="paste-js-container" class="clearfix">
+<textarea id="paste-js" placeholder="Or paste JavaScript code here…" rows="1" cols="50" spellcheck="false"></textarea>
+<div class="paste-js-buttons clearfix">
+<button id="paste-js-submit" class="button" onclick="minifyPasteJS()">Minify</button>
+<div id="paste-js-reset" class="link" onclick="resetPasteJS()">Reset</div>
+</div>
+</div>
+
+<div id="minifiedJS-wrapper">
+<form id="minifiedJS-form" method="post" action="/tools/uglifyjsDownload">
+<input type="hidden" name="_csrfToken" value="93018d076e5cf129b7f2dcc54b268fbdda101de2b5646c82de5c259c">
+<div id="minifiedJS-container">
+<div class="file-info-header clearfix">
+<div class="file-info-headline truncate"></div>
+<div class="file-info-sizes clearfix">
+<div class="file-info-size-org"><i>original</i><span></span></div>
+<div class="file-info-size-minified"><i>minified</i><span></span></div>
+<div class="file-info-size-percent"><span></span></div>
+</div>
+</div>
+<textarea name="js" id="minifiedJS" rows="6" cols="50" onclick="$(this).select();" spellcheck="false" readonly="readonly"></textarea>
+<div id="download-minified-container" class="clearfix">
+<input name="filename" type="text" id="download-minified-filename" value="" spellcheck="false" autocomplete="off">
+<button type="submit" class="button" id="download-minified-button">Download minified file</button>
+<div id="download-minified-placeholder">Download minified JavaScript as file:</div>
+</div>
+</div>
+</form>
+</div>
+
+<div class="tool-description">
+<p>Click the area above or drop files into it to minify your JavaScript files.</p>
+<p>You can minify multiple files at once!<p>
+<p>This tool uses <a href="https://www.npmjs.com/package/uglify-es" target="_blank">uglify-es 3.3.9</a><p>
+</div>
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.min.js"></script>
+<script src="/js/uglify.js"></script>
+</body>
+</html>
