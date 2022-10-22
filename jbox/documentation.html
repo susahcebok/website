@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>jBox Documentation</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="jBox is a jQuery plugin that makes it easy to create customizable tooltips, modal windows, image galleries and more.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/blog">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jbox" class="active">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<nav class="jBox-nav">
+  <a href="/jBox/get_started">Get Started</a>
+  <a href="/jBox/documentation" class="active">Documentation</a>
+  <a href="/jBox/options">Options</a>
+  <a href="/jBox/methods">Methods</a>
+  <a href="/jBox/demos">Demos</a>
+  <div class="jBox-nav__spacer"></div>
+  <a class="jBox-nav__download-button nav-download" href="//github.com/StephanWagner/jBox/releases" target="_blank"><span class="icon-download"></span>Download @ Github</a>
+  <div class="jBox-nav__github-button">
+    <a class="github-button" href="https://github.com/StephanWagner/jBox" data-icon="octicon-star" data-show-count="true" aria-label="Star StephanWagner/jBox on GitHub">Star</a>
+  </div>
+</nav>
+
+<h2>Basics<span class="permalink-anchor" id="basics"></span><a href="#basics" class="permalink icon-link"></a></h2>
+
+<p>The best way to initialize a jBox is to create a new instance of jBox.</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<p>Setting a plugin (in this case <span class="code tt">Tooltip</span>) is optional, you could also set your options right away: <span class="code tt">new jBox(options);</span>.
+Refer to the section <a href="/jBox/options">options</a> to see what options you can set.</p>
+
+<p class="margin">jBox comes with the default plugins
+<span class="code tt">Tooltip</span>,
+<span class="code tt">Mouse</span> and
+<span class="code tt">Modal</span>.</p>
+
+<p>In addition you can include the plugins
+<span class="code tt">Confirm</span>,
+<span class="code tt">Notice</span> and
+<span class="code tt">Image</span>.</p>
+
+<p class="margin">Save your jBox instances in variables, so you can access the <a href="/jBox/methods">jBox methods</a>:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">var</span> myModal <span style="color: #339933;">=</span> <span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  content<span style="color: #339933;">:</span> <span style="color: #3366CC;">'This is my jBox'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+myModal.<span style="color: #660066;">open</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<p>Remember to put your JavaScript code into <span class="code tt">$(document).ready(function() {});</span>.</p>
+
+
+<h2>Attach jBox to elements<span class="permalink-anchor" id="attach-jbox"></span><a href="#attach-jbox" class="permalink icon-link"></a></h2>
+
+<p>Use the option <span class="code tt">attach</span> to attach jBoxes to your elements.
+In the following example, the jBox will open or close when you click on the element with <span class="code tt">id="myModal"</span>:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'#myModal'</span><span style="color: #339933;">,</span>
+  title<span style="color: #339933;">:</span> <span style="color: #3366CC;">'Hurray!'</span><span style="color: #339933;">,</span>
+  content<span style="color: #339933;">:</span> <span style="color: #3366CC;">'This is my modal window'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">div</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;myModal&quot;</span>&gt;</span>Click me to open a modal window!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">div</span>&gt;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Modal', {
+    attach: '#myModalAttach',
+    title: 'Hurray!',
+    content: 'This is my modal window',
+    blockScrollAdjust: ['header']
+  });
+});
+</script>
+
+<div class="demo">
+<div style="cursor: pointer" id="myModalAttach">Click me to open a modal window!</div>
+</div>
+
+<p class="margin2">Tooltips will open when your mouse hovers over the element, while modal windows will open when you click on them.
+This behavior is defined in the option <span class="code tt">trigger</span>.
+You can set it to <span class="code tt">click</span> or <span class="code tt">mouseenter</span>.<br>
+In this example the tooltip opens when you click on the element, rather than when your mouse enters:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip'</span><span style="color: #339933;">,</span>
+  trigger<span style="color: #339933;">:</span> <span style="color: #3366CC;">'click'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">class</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;tooltip&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Tooltip 1&quot;</span>&gt;</span>Click me!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">class</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;tooltip&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Tooltip 2&quot;</span>&gt;</span>Click me!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Tooltip', {
+    attach: '.tooltip1',
+    trigger: 'click',
+    zIndex: 8000
+  });
+});
+</script>
+
+<div class="demo">
+<span style="padding: 0 10px 0 0; cursor: pointer;" class="tooltip1" title="Tooltip 1">Click me!</span><span style="padding: 0 0 0 10px; cursor: pointer;" class="tooltip1" title="Tooltip 2">Click me!</span>
+</div>
+
+<p class="margin2">If you need to access the currently attached element, you can use <span class="code tt">this.source</span>:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip'</span><span style="color: #339933;">,</span>
+  trigger<span style="color: #339933;">:</span> <span style="color: #3366CC;">'click'</span><span style="color: #339933;">,</span>
+  onOpen<span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #000066; font-weight: bold;">this</span>.<span style="color: #660066;">source</span>.<span style="color: #660066;">data</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'clicked'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#40;</span><span style="color: #000066; font-weight: bold;">this</span>.<span style="color: #660066;">source</span>.<span style="color: #660066;">data</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'clicked'</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">||</span> <span style="color: #CC0000;">0</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">+</span> <span style="color: #CC0000;">1</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000066; font-weight: bold;">this</span>.<span style="color: #660066;">source</span>.<span style="color: #660066;">find</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'span'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">html</span><span style="color: #009900;">&#40;</span><span style="color: #000066; font-weight: bold;">this</span>.<span style="color: #660066;">source</span>.<span style="color: #660066;">data</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'clicked'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+  <span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">class</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;tooltip&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Tooltip 1&quot;</span>&gt;</span>Click me! (<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span>&gt;</span>0<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span>)<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">class</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;tooltip&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Tooltip 2&quot;</span>&gt;</span>Click me! (<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span>&gt;</span>0<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span>)<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Tooltip', {
+    attach: '.tooltip1',
+    trigger: 'click',
+    zIndex: 8000,
+    onOpen: function () {
+	  this.source.data('clicked', (this.source.data('clicked') || 0) + 1);
+      this.source.find('span').html(this.source.data('clicked'));
+    }
+  });
+});
+</script>
+
+<div class="demo">
+<span style="padding: 0 10px 0 0; cursor: pointer;" class="tooltip1" title="Tooltip 1">Click me! (<span>0</span>)</span><span style="padding: 0 0 0 10px; cursor: pointer;" class="tooltip1" title="Tooltip 2">Click me! (<span>0</span>)</span>
+</div>
+
+<h2>Open and close<span class="permalink-anchor" id="open-and-close"></span><a href="#open-and-close" class="permalink icon-link"></a></h2>
+
+<p>If you want more control over your jBoxes, use the methods <span class="code tt">open()</span>, <span class="code tt">close()</span> or <span class="code tt">toggle()</span>:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">var</span> myModal <span style="color: #339933;">=</span> <span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;myModal.open();&quot;</span>&gt;</span>Open jBox!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;myModal.close();&quot;</span>&gt;</span>Close jBox!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;myModal.toggle();&quot;</span>&gt;</span>Toggle jBox!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span></pre></div>
+
+<script>
+var myModal;
+$(document).ready(function() {
+  myModal = new jBox('Modal', {
+    title: 'Hello!',
+    content: 'Thanks for opening me!',
+    theme: 'ModalBorder',
+    overlay: false,
+    closeOnClick: false,
+    blockScrollAdjust: ['header']
+  });
+});
+</script>
+
+<div class="demo">
+<span style="padding: 0 10px 0 0; cursor: pointer;" onclick="myModal.open();">Open jBox!</span><span style="padding: 0 10px; cursor: pointer;" onclick="myModal.close();">Close jBox!</span><span style="padding: 0 0 0 10px; cursor: pointer;" onclick="myModal.toggle();">Toggle jBox!</span>
+</div>
+
+<p class="margin2">You can delay opening or closing with the options <span class="code tt">delayOpen</span> and <span class="code tt">delayClose</span>:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip'</span><span style="color: #339933;">,</span>
+  delayOpen<span style="color: #339933;">:</span> <span style="color: #CC0000;">500</span><span style="color: #339933;">,</span>
+  delayClose<span style="color: #339933;">:</span> <span style="color: #CC0000;">1000</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<script>
+var myModal;
+$(document).ready(function() {
+  new jBox('Tooltip', {
+    attach: '.tooltip',
+    delayOpen: 500,
+    delayClose: 1000,
+    zIndex: 8000
+  });
+});
+</script>
+
+<div class="demo">
+<span style="cursor: pointer" class="tooltip" title="I'm lazy!">Hover me!</span>
+</div>
+
+<p>To force immediate opening or closing, pass the option <span class="code tt">ignoreDelay</span> to the <span class="code tt">open</span> or <span class="code tt">close</span> methods:<br>
+<span class="code">myTooltip.close({ignoreDelay: true});</span>.</p>
+
+
+<h2>Content<span class="permalink-anchor" id="jbox-content"></span><a href="#jbox-content" class="permalink icon-link"></a></h2>
+
+<p>The easiest way to give your jBoxes content are the options <span class="code tt">title</span> and <span class="code tt">content</span>.
+To make content dependent of the attached element, use the option <span class="code tt">getTitle</span> and <span class="code tt">getContent</span>:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip'</span><span style="color: #339933;">,</span>
+  getTitle<span style="color: #339933;">:</span> <span style="color: #3366CC;">'data-jbox-title'</span><span style="color: #339933;">,</span>
+  getContent<span style="color: #339933;">:</span> <span style="color: #3366CC;">'data-jbox-content'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">class</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;tooltip&quot;</span> data-jbox-<span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Title 1&quot;</span> data-jbox-<span style="color: #000066;">content</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Content 1&quot;</span>&gt;</span>Hover me!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">class</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;tooltip&quot;</span> data-jbox-<span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Title 2&quot;</span> data-jbox-<span style="color: #000066;">content</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Content 2&quot;</span>&gt;</span>Hover me!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span></pre></div>
+
+<script>
+var myModal;
+$(document).ready(function() {
+  new jBox('Tooltip', {
+    attach: '.tooltip2',
+    getTitle: 'data-jbox-title',
+    getContent: 'data-jbox-content',
+    zIndex: 8000
+  });
+});
+</script>
+
+<div class="demo">
+<span style="padding: 0 10px 0 0; cursor: pointer" class="tooltip2" data-jbox-title="Title 1" data-jbox-content="Content 1">Hover me!</span><span style="padding: 0 0 0 10px; cursor: pointer" class="tooltip2" data-jbox-title="Title 2" data-jbox-content="Content 2">Hover me!</span>
+</div>
+
+<p class="margin2">If you have a lot of content, you might want to create an element and let your jBox grab it:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'#myModal'</span><span style="color: #339933;">,</span>
+  title<span style="color: #339933;">:</span> <span style="color: #3366CC;">'Grab an element'</span><span style="color: #339933;">,</span>
+  content<span style="color: #339933;">:</span> $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#grabMe'</span><span style="color: #009900;">&#41;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">div</span> <span style="color: #000066;">style</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;display: none&quot;</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;grabMe&quot;</span>&gt;</span>I'm your content. Remember to set CSS display to none!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">div</span>&gt;</span></pre></div>
+
+<script>
+var myModal2;
+$(document).ready(function() {
+  new jBox('Modal', {
+    attach: '#myModal2',
+    title: 'Grab an element',
+    content: $('#grabMe'),
+    blockScrollAdjust: ['header']
+  });
+});
+</script>
+
+<div style="display: none" id="grabMe">I'm your content. Remember to set CSS display to none!</div>
+
+<div class="demo">
+<span style="cursor: pointer" id="myModal2">Click me!</span>
+</div>
+
+<p class="margin2">To set content on the run, use the methods <span class="code tt">setTitle</span> and <span class="code tt">setContent</span>:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">var</span> myModal <span style="color: #339933;">=</span> $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#myModal'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">jBox</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+myModal.<span style="color: #660066;">setTitle</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Hello!'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">setContent</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Some content...'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+<p>If the dimensions of jBox change when setting a title or content, jBox will reposition. To avoid that, pass <span class="code tt">true</span> as second argument: <span class="code tt">.setContent(content, true)</span>.</p>
+
+<p class="margin2">jBox also can easily load content with AJAX:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'#myModal'</span><span style="color: #339933;">,</span>
+  ajax<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+    url<span style="color: #339933;">:</span> <span style="color: #3366CC;">'https://reqres.in/api/users?delay=2'</span><span style="color: #339933;">,</span>
+    data<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+      id<span style="color: #339933;">:</span> <span style="color: #CC0000;">1</span>
+    <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+    reload<span style="color: #339933;">:</span> <span style="color: #3366CC;">'strict'</span><span style="color: #339933;">,</span>
+    setContent<span style="color: #339933;">:</span> <span style="color: #003366; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+    success<span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span>response<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+      console.<span style="color: #660066;">log</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'jBox AJAX response'</span><span style="color: #339933;">,</span> response<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+      <span style="color: #000066; font-weight: bold;">this</span>.<span style="color: #660066;">setContent</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'&lt;b&gt;Content loaded.&lt;/b&gt;&lt;br&gt;Check console for response.'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+    error<span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+      <span style="color: #000066; font-weight: bold;">this</span>.<span style="color: #660066;">setContent</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'&lt;b style=&quot;color: #d33&quot;&gt;Error loading content.&lt;/b&gt;'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span>
+  <span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<script>
+var myModal4;
+$(document).ready(function() {
+  new jBox('Modal', {
+    attach: '#myModal4',
+    width: 300,
+    height: 100,
+    blockScrollAdjust: ['header'],
+    ajax: {
+      url: 'https://reqres.in/api/users?delay=2',
+      data: {
+        id: 1
+      },
+      reload: 'strict',
+      setContent: false,
+      success: function (response) {
+        console.log('jBox AJAX response', response);
+        this.setContent('<b>Content loaded.</b><br>Check console for response.');
+      },
+      error: function () {
+        this.setContent('<b style="color: #d33">Error loading content.</b>');
+      }
+    }
+  });
+});
+</script>
+
+<div class="demo">
+<span style="cursor: pointer" id="myModal4">Click me!</span>
+</div>
+
+<p>If you set the option <span class="code tt">reload</span> to <span class="code tt">true</span>, your jBox will load new content for each element it is attached to.
+Set it to <span class="code tt">'strict'</span> and jBox will load new content every time it opens.</p>
+
+
+<h2>Positioning<span class="permalink-anchor" id="positioning"></span><a href="#positioning" class="permalink icon-link"></a></h2>
+
+<p>With the options <span class="code tt">target</span>, <span class="code tt">position</span> and <span class="code tt">outside</span> you can position your jBoxes anywhere at any element:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip'</span><span style="color: #339933;">,</span>
+  target<span style="color: #339933;">:</span> <span style="color: #3366CC;">'#anotherElement'</span><span style="color: #339933;">,</span>
+  position<span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+    x<span style="color: #339933;">:</span> <span style="color: #3366CC;">'left'</span><span style="color: #339933;">,</span>
+    y<span style="color: #339933;">:</span> <span style="color: #3366CC;">'top'</span>
+  <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+  outside<span style="color: #339933;">:</span> <span style="color: #3366CC;">'x'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Tooltip', {
+    attach: '#myTooltip1',
+    target: '#anotherElement',
+    position: {
+      x: 'left',
+      y: 'top'
+    },
+    outside: 'x',
+    content: 'I\'m over here!',
+    trigger: 'click',
+    zIndex: 8000
+  });
+});
+</script>
+
+<div class="demo">
+<span style="float: right; background: #000; color: #fff; padding: 0px 10px" id="anotherElement">Another Element</span>
+<span style="cursor: pointer" id="myTooltip1">Click me!</span>
+</div>
+
+<p>Your <span class="code tt">target</span> can be any element selector, including <span class="code tt">window</span>.</p>
+<p>The option <span class="code tt">position</span> is an object with the horizontal align <span class="code tt">x</span> and the vertical align <span class="code tt">y</span>.</p>
+<p>With the option <span class="code tt">outside</span> you can move your jBox outside of the targets position, use <span class="code tt">x</span>, <span class="code tt">y</span> or <span class="code tt">xy</span>.</p>
+
+<p class="margin">jBox calculates its position when it is being opened or when you set content. If you need the position to be calculated when the window size changes, use the option <span class="code tt">reposition</span>.</p>
+
+<p class="margin">If you want your jBox to adjust its position when it reaches out of the viewable window area, use the options <span class="code tt">adjustPosition</span> and <span class="code tt">adjustTracker</span>:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;">$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'.tooltip'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">jBox</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  adjustPosition<span style="color: #339933;">:</span> <span style="color: #003366; font-weight: bold;">true</span><span style="color: #339933;">,</span>
+  adjustTracker<span style="color: #339933;">:</span> <span style="color: #003366; font-weight: bold;">true</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  $('#myTooltip2').jBox('Tooltip', {
+    theme: 'TooltipBorder',
+    position: {
+      x: 'left',
+      y: 'top'
+    },
+    offset: {x: 25},
+    content: 'Scroll down to see me flip!',
+    trigger: 'click',
+    pointer: 'left:25',
+    adjustPosition: true,
+    adjustTracker: true,
+    adjustDistance: {top: 55, right: 5, bottom: 5, left: 5},
+    zIndex: 8000
+  });
+
+  $('#myTooltip3').jBox('Tooltip', {
+    theme: 'TooltipBorder',
+    content: 'Scroll down to see me move!',
+    position: {
+      x: 'right',
+      y: 'center'
+    },
+    width: 140,
+    outside: 'x',
+    content: 'Scroll down to see me move!',
+    trigger: 'click',
+    pointer: 'bottom:25',
+    adjustPosition: true,
+    adjustTracker: true,
+    adjustDistance: {top: 55, right: 5, bottom: 5, left: 5},
+    onInit: function() {
+      this.options.height = ($(window).height() - 200);
+    },
+    zIndex: 8000
+  });
+});
+</script>
+
+<div class="demo">
+<span style="padding: 0 10px 0 0; cursor: pointer" id="myTooltip2">Click me! I will flipp!</span><span style="padding: 0 0 0 10px; cursor: pointer" id="myTooltip3">Click me! I will move!</span>
+</div>
+
+<p>The option <span class="code tt">adjustTracker</span> makes sure the position gets also adjusted when you scroll or resize your browser.
+Note that the position can only get adjusted when your jBox has an outside position.</p>
+
+
+<h2>Pointer<span class="permalink-anchor" id="pointer"></span><a href="#pointer" class="permalink icon-link"></a></h2>
+
+<p>The option <span class="code tt">pointer</span> adds a pointer to your jBox. Note that your jBox needs to have an outside position.</p>
+<p>You can also define where your pointer should be aligned to and what offset it should have:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip1'</span><span style="color: #339933;">,</span> pointer<span style="color: #339933;">:</span> <span style="color: #3366CC;">'left'</span><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip2'</span><span style="color: #339933;">,</span> pointer<span style="color: #339933;">:</span> <span style="color: #3366CC;">'center:-100'</span><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip3'</span><span style="color: #339933;">,</span> pointer<span style="color: #339933;">:</span> <span style="color: #3366CC;">'right:60'</span><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Tooltip', {attach: '.tooltipPointer1', pointer: 'left', content: 'My pointer is aligned to the left', zIndex: 8000});
+  new jBox('Tooltip', {attach: '.tooltipPointer2', pointer: 'center:-100', content: 'My pointer is moved 100 pixels to the left', zIndex: 8000});
+  new jBox('Tooltip', {attach: '.tooltipPointer3', pointer: 'right:30', content: 'My pointer is right with a 60 pixel offset', zIndex: 8000});
+});
+</script>
+
+<div class="demo">
+<span style="padding: 0 10px 0 0; cursor: pointer" class="tooltipPointer1">Hover me!</span>
+<span style="padding: 0 10px; cursor: pointer" class="tooltipPointer2">Hover me!</span>
+<span style="padding: 0 0 0 10px; cursor: pointer" class="tooltipPointer3">Hover me!</span>
+</div>
+
+<h2>Animations<span class="permalink-anchor" id="animations"></span><a href="#animations" class="permalink icon-link"></a></h2>
+
+<p>You can set the duration of the fade animation with the option <span class="code tt">fade</span>.<br>
+jBox also comes with a few CSS animations: <span class="code tt">zoomIn</span>, <span class="code tt">zoomOut</span>, <span class="code tt">pulse</span>, <span class="code tt">move</span>, <span class="code tt">slide</span>, <span class="code tt">flip</span>, <span class="code tt">tada</span>.</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'#myModal'</span><span style="color: #339933;">,</span> animation<span style="color: #339933;">:</span> <span style="color: #3366CC;">'zoomIn'</span><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Modal', {attach: '#myModalAnimation1', animation: 'zoomIn', title: 'Animation', width: 350, content: '<div style="padding: 80px 0; text-align: center;">zoomIn</div>', addClass: 'jBox-AnimationDemo', blockScrollAdjust: ['header']});
+  new jBox('Modal', {attach: '#myModalAnimation2', animation: 'zoomOut', title: 'Animation', width: 350, content: '<div style="padding: 80px 0; text-align: center;">zoomOut</div>', addClass: 'jBox-AnimationDemo', blockScrollAdjust: ['header']});
+  new jBox('Modal', {attach: '#myModalAnimation3', animation: 'pulse', title: 'Animation', width: 350, content: '<div style="padding: 80px 0; text-align: center;">pulse</div>', addClass: 'jBox-AnimationDemo', blockScrollAdjust: ['header']});
+  new jBox('Modal', {attach: '#myModalAnimation4', animation: 'move', title: 'Animation', width: 350, content: '<div style="padding: 80px 0; text-align: center;">move</div>', addClass: 'jBox-AnimationDemo', blockScrollAdjust: ['header']});
+  new jBox('Modal', {attach: '#myModalAnimation5', animation: {open: 'move:right', close: 'slide:top'}, title: 'Animation', width: 350, content: '<div style="padding: 80px 0; text-align: center;">slide</div>', addClass: 'jBox-AnimationDemo', blockScrollAdjust: ['header']});
+  new jBox('Modal', {attach: '#myModalAnimation6', animation: 'flip', title: 'Animation', width: 350, content: '<div style="padding: 80px 0; text-align: center;">flip</div>', addClass: 'jBox-AnimationDemo', blockScrollAdjust: ['header']});
+  new jBox('Modal', {attach: '#myModalAnimation7', animation: 'tada', title: 'Animation', width: 350, content: '<div style="padding: 80px 0; text-align: center;">tada</div>', addClass: 'jBox-AnimationDemo', blockScrollAdjust: ['header']});
+});
+</script>
+
+<div class="demo">
+<span style="padding: 0 10px 0 0; cursor: pointer" id="myModalAnimation1">zoomIn</span>
+<span style="padding: 0 10px; cursor: pointer" id="myModalAnimation2">zoomOut</span>
+<span style="padding: 0 10px; cursor: pointer" id="myModalAnimation3">pulse</span>
+<span style="padding: 0 10px; cursor: pointer" id="myModalAnimation4">move</span>
+<span style="padding: 0 10px; cursor: pointer" id="myModalAnimation5">slide</span>
+<span style="padding: 0 10px; cursor: pointer" id="myModalAnimation6">flip</span>
+<span style="padding: 0 0 0 10px; cursor: pointer" id="myModalAnimation7">tada</span>
+</div>
+
+<p>To use different animations for opening and closing, use an object: <span class="code tt"><span style="white-space: nowrap">{open: 'tada',</span> <span style="white-space: nowrap">close: 'flip'}</span></span>.<br>
+You can also set the direction of the <span class="code tt">move</span> and <span class="code tt">slide</span> animations: <span class="code tt"><span style="white-space: nowrap">{open: 'move:right',</span> <span style="white-space: nowrap">close: 'slide:top'}</span></span>.</p>
+
+<h2>Events<span class="permalink-anchor" id="events"></span><a href="#events" class="permalink icon-link"></a></h2>
+
+<p>You can use following events:
+  <span class="code tt">onInit</span>,
+  <span class="code tt">onAttach</span>,
+  <span class="code tt">onPosition</span>,
+  <span class="code tt">onCreated</span>,
+  <span class="code tt">onOpen</span>,
+  <span class="code tt">onClose</span>,
+  <span class="code tt">onCloseComplete</span>.
+
+Note that you can use <span class="code tt">this</span> within the event functions, it refers to your jBox instance:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'#myTooltip'</span><span style="color: #339933;">,</span>
+  trigger<span style="color: #339933;">:</span> <span style="color: #3366CC;">'click'</span><span style="color: #339933;">,</span>
+  onCreated<span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #000066; font-weight: bold;">this</span>.<span style="color: #660066;">setContent</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'This is my jBox!'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+  <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+  onOpen<span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Notice'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>content<span style="color: #339933;">:</span> <span style="color: #3366CC;">'Here I come!'</span><span style="color: #339933;">,</span> color<span style="color: #339933;">:</span> <span style="color: #3366CC;">'green'</span><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+  <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+  onClose<span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Notice'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>content<span style="color: #339933;">:</span> <span style="color: #3366CC;">'See ya later!'</span><span style="color: #339933;">,</span> color<span style="color: #339933;">:</span> <span style="color: #3366CC;">'red'</span><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+  <span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Tooltip', {
+    attach: '#myTooltipEvents',
+    trigger: 'click',
+    onCreated: function () {
+      this.setContent('This is my jBox!');
+    },
+    onOpen: function() {
+      new jBox('Notice', {content: 'Here I come!', color: 'green'});
+    },
+    onClose: function() {
+      new jBox('Notice', {content: 'See ya later!', color: 'red'});
+    }
+  });
+});
+</script>
+
+<div class="demo">
+<span style="cursor: pointer" id="myTooltipEvents">Click me!</span>
+</div>
+
+<p class="margin2">Learn more about how to customize your jBoxes in the sections <a href="/jBox/options">options</a> and <a href="/jBox/methods">methods</a>.</p>
+
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
