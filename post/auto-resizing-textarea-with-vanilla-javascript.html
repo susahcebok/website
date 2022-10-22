@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Auto resizing textarea with vanilla JavaScript · Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="A small script to automatically resize textareas to the height of their content while you are typing.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/" class="active">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<div class="article-author">November 2018</div>
+
+<h1>Auto resizing textarea with vanilla JavaScript</h1>
+
+<p>This is a rewrite of my <a href="/post/auto-resizing-textarea">Auto resizing textarea</a> article to remove the jQuery dependency.</p>
+
+<p class="margin">The following function will add the auto resize events to your textareas that have the attribute <span class="code tt">data-autoresize</span>.
+It works on mobile devices too.</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">function</span> addAutoResize<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+  document.<span style="color: #660066;">querySelectorAll</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'[data-autoresize]'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">forEach</span><span style="color: #009900;">&#40;</span><span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span>element<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    element.<span style="color: #660066;">style</span>.<span style="color: #660066;">boxSizing</span> <span style="color: #339933;">=</span> <span style="color: #3366CC;">'border-box'</span><span style="color: #339933;">;</span>
+    <span style="color: #000066; font-weight: bold;">var</span> offset <span style="color: #339933;">=</span> element.<span style="color: #660066;">offsetHeight</span> <span style="color: #339933;">-</span> element.<span style="color: #660066;">clientHeight</span><span style="color: #339933;">;</span>
+    element.<span style="color: #660066;">addEventListener</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'input'</span><span style="color: #339933;">,</span> <span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span>event<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+      event.<span style="color: #660066;">target</span>.<span style="color: #660066;">style</span>.<span style="color: #660066;">height</span> <span style="color: #339933;">=</span> <span style="color: #3366CC;">'auto'</span><span style="color: #339933;">;</span>
+      event.<span style="color: #660066;">target</span>.<span style="color: #660066;">style</span>.<span style="color: #660066;">height</span> <span style="color: #339933;">=</span> event.<span style="color: #660066;">target</span>.<span style="color: #660066;">scrollHeight</span> <span style="color: #339933;">+</span> offset <span style="color: #339933;">+</span> <span style="color: #3366CC;">'px'</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    element.<span style="color: #660066;">removeAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'data-autoresize'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+  <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span></pre></div>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">textarea</span> data-autoresize <span style="color: #000066;">rows</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;2&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">textarea</span>&gt;</span></pre></div>
+
+<p class="margin2">Works best when your textareas have CSS <span class="code tt">box-sizing: border-box</span>.
+It also makes sense to remove the browsers resize option:</p>
+
+<div class="syntax tt">
+<pre class="css" style="font-family:monospace;">textarea <span style="color: #00AA00;">&#123;</span>
+  <span style="color: #000000; font-weight: bold;">box-sizing</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">border-box</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">resize</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">none</span><span style="color: #00AA00;">;</span>
+<span style="color: #00AA00;">&#125;</span></pre></div>
+
+<p class="margin2">To add the auto resize, just call the function <span class="code tt">addAutoResize()</span> once your textareas are exposed in DOM. When you load new content via an ajax call, you can savely call <span class="code tt">addAutoResize()</span> again, it will only apply the events to new textareas.</p>
+
+<h2>Demo</h2>
+
+<textarea rows="2" placeholder="Type some lines!" data-autoresize style="resize: none; width: 100%; padding: 5px 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 15px; line-height: 1.6" spellcheck="false"></textarea>
+
+</div>
+
+<script>
+function addAutoResize() {
+  document.querySelectorAll('[data-autoresize]').forEach(function (element) {
+    element.style.boxSizing = 'border-box';
+    var offset = element.offsetHeight - element.clientHeight;
+    element.addEventListener('input', function (event) {
+      event.target.style.height = 'auto';
+      event.target.style.height = event.target.scrollHeight + offset + 'px';
+    });
+    element.removeAttribute('data-autoresize');
+  });
+}
+addAutoResize();
+</script>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
