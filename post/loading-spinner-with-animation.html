@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Loading spinner with animation · Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="Add a nice zoom animation to your loading spinners.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/" class="active">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<div class="article-author">December 2016</div>
+
+<h1>Loading spinner with animation</h1>
+
+<p>A while back I wrote how to create nice <a href="/only-css-loading-spinner">only CSS loading spinners</a>.
+In this article we are making the spinners even nicer by adding a zoom-in and zoom-out animation to it.</p>
+
+<h2>The code</h2>
+
+<p>Check out the following <a href="https://jsfiddle.net/StephanWagner/kk5bd3hh" target="_blank">fiddle</a> which has all the JavaScript, HTML and CSS you need:</p>
+
+<div class="fiddle-embed">
+<iframe width="100%" height="272" src="https://jsfiddle.net/StephanWagner/kk5bd3hh/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+</div>
+
+<h2>Demo</h2>
+
+<p>To add a spinner use the function <span class="code tt">addSpinner(el, static_pos)</span>. Pass the jQuery element <span class="code tt">el</span> where the spinner should appear. You can set <span class="code tt">static_pos</span> to <span class="code tt">true</span> to add a static spinner element rather than an absolute positioned one.</p>
+<p class="margin">To remove the spinner use the function <span class="code tt">removeSpinner(el, complete)</span>. This function will look for a spinner in the jQuery elment provided with <span class="code tt">el</span> and will trigger the function <span class="code tt">complete</span> if you have passed one.</p>
+<p class="margin">The following demo adds a spinner when an AJAX request is made and removes it when the request is completed:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">function</span> loadAjax<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+  $.<span style="color: #660066;">ajax</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>
+    url<span style="color: #339933;">:</span> <span style="color: #3366CC;">'https://reqres.in/api/?delay=2'</span><span style="color: #339933;">,</span>
+    beforeSend<span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+      $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#ajax-button'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">attr</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'disabled'</span><span style="color: #339933;">,</span> <span style="color: #003366; font-weight: bold;">true</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+      $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#ajax-container'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">html</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">''</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+      addSpinner<span style="color: #009900;">&#40;</span>$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#ajax-container'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+    complete<span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span>response<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+      $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#ajax-button'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">attr</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'disabled'</span><span style="color: #339933;">,</span> <span style="color: #003366; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+      removeSpinner<span style="color: #009900;">&#40;</span>$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#ajax-container'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+        $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#ajax-container'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">html</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Content loaded.'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+      <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span>
+  <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span></pre></div>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">button</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;ajax-button&quot;</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;loadAjax()&quot;</span>&gt;</span>Send Request<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">button</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">div</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;ajax-container&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">div</span>&gt;</span></pre></div>
+
+<style>
+@keyframes spinner-demo {
+  to {transform: rotate(360deg);}
+}
+
+.spinner-demo,
+.spinner-demo:before {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+}
+
+.spinner-demo {
+  border: none;
+}
+
+.spinner-demo:before {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #000;
+  animation: spinner-demo .6s linear infinite;
+}
+
+.spinner-demo-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+.spinner-demo-add,
+.spinner-demo-remove {
+  animation-fill-mode: both;
+  animation-duration: .4s;
+}
+
+.spinner-demo-add {
+  animation-name: spinner-demo-add;
+}
+
+@keyframes spinner-demo-add {
+  from {transform: scale(0);}
+  to {transform: scale(1);}
+}
+
+.spinner-demo-remove {
+  animation-name: spinner-demo-remove;
+}
+
+@keyframes spinner-demo-remove {
+  to {transform: scale(0);}
+}
+
+#ajax-container {
+  background: #fff;
+  width: 160px;
+  height: 49px;
+  line-height: 47px;
+  float: right;
+  font-size: 15px;
+  border: 1px solid #ced9e4;
+  border-radius: 5px;
+  position: relative;
+  text-align: center;
+}
+
+#ajax-button {
+  margin-top: 10px;
+}
+</style>
+
+<script>
+function addSpinner(el, static_pos)
+{
+  var spinner = el.children('.spinner-demo');
+  if (spinner.length && !spinner.hasClass('spinner-demo-remove')) return null;
+  !spinner.length && (spinner = $('<div class="spinner-demo' + (static_pos ? '' : ' spinner-demo-absolute') + '"/>').appendTo(el));
+  animateSpinner(spinner, 'add');
+}
+
+function removeSpinner(el, complete)
+{
+  var spinner = el.children('.spinner-demo');
+  spinner.length && animateSpinner(spinner, 'remove', complete);
+}
+
+function animateSpinner(el, animation, complete)
+{
+  if (el.data('animating')) {
+    el.removeClass(el.data('animating')).data('animating', null);
+    el.data('animationTimeout') && clearTimeout(el.data('animationTimeout'));
+  }
+  el.addClass('spinner-demo-' + animation).data('animating', 'spinner-demo-' + animation);
+  el.data('animationTimeout', setTimeout(function() { animation == 'remove' && el.remove(); complete && complete(); }, parseFloat(el.css('animation-duration')) * 1000));
+}
+
+function loadAjax()
+{
+  $.ajax({
+    url: 'https://reqres.in/api/users?delay=2',
+    beforeSend: function () {
+      $('#ajax-button').attr('disabled', true);
+      $('#ajax-container').html('');
+      addSpinner($('#ajax-container'));
+    },
+    complete: function (response) {
+      $('#ajax-button').attr('disabled', false);
+      removeSpinner($('#ajax-container'), function () {
+        $('#ajax-container').html('Content loaded.');
+      });
+    }
+  });
+}
+</script>
+
+<div class="demo">
+<button id="ajax-button" class="button" onclick="loadAjax()">Send Request</button>
+<div id="ajax-container"></div>
+</div>
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
