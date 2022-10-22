@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Wordpress Theme Deploy · Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="Easily deploy your wordpress theme via FTP.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/" class="active">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+	<div class="article-author">April 2021</div>
+
+	<h1>Wordpress Theme Deploy</h1>
+
+	<p>
+		I only recently started to work with Wordpress as I feel it matured into a decent CMS.
+		It does lack deployment options though.
+		My first choice for deploying PHP projects is <a href="https://deployer.org" target="_blank">Deployer</a>.
+		Unfortunately, since the client can update Wordpress or install plugins on the production server at any time, that deployment strategy doesn't work that well here.
+		So I had to come up with a solution to only deploy the actual theme.
+	</p>
+
+	<p class="margin demo">
+		With <a href="https://www.npmjs.com/package/wordpress-deploy" target="_blank">wordpress-deploy</a> you can upload your wordpress theme via FTP to your server with a single bash command.
+		A backup will be created and there is no downtime since the theme will get placed into the theme folder only after the upload completed.
+	</p>
+
+	<h2>Install</h2>
+
+	<p>Install the package <a href="https://www.npmjs.com/package/wordpress-deploy" target="_blank">wordpress-deploy</a> globally:</p>
+
+	<div class="syntax tt">
+		<pre class="text" style="font-family:monospace;">npm install -g wordpress-deploy</pre>	</div>
+
+	<p class="margin2">
+		Now you can use the bash command <code class="code tt">wordpress-deploy</code> (or in short <code class="code tt">wp-dep</code>) preferably from within your wordpress folder.
+	</p>
+
+	<div class="syntax tt">
+		<pre class="text" style="font-family:monospace;">wp-dep</pre>	</div>
+
+	<h2>Config</h2>
+
+	<p>
+		Add a config file named <code class="code tt">wordpress-deploy.config.js</code> to your wordpress folder and adjust accordingly.
+	</p>
+
+	<p class="notice">
+		Make sure to add the config file to your <code class="code tt">.gitignore</code>
+	</p>
+
+	<div class="syntax tt">
+		<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">const</span> config <span style="color: #339933;">=</span> <span style="color: #009900;">&#123;</span>
+  <span style="color: #006600; font-style: italic;">// The hostname or IP address of the FTP server</span>
+  host<span style="color: #339933;">:</span> <span style="color: #3366CC;">'localhost'</span><span style="color: #339933;">,</span>
+&nbsp;
+  <span style="color: #006600; font-style: italic;">// The port of the FTP server</span>
+  port<span style="color: #339933;">:</span> <span style="color: #CC0000;">21</span><span style="color: #339933;">,</span>
+&nbsp;
+  <span style="color: #006600; font-style: italic;">// Username for authentication</span>
+  user<span style="color: #339933;">:</span> <span style="color: #3366CC;">'anonymous'</span><span style="color: #339933;">,</span>
+&nbsp;
+  <span style="color: #006600; font-style: italic;">// Password for authentication</span>
+  password<span style="color: #339933;">:</span> <span style="color: #3366CC;">'secret'</span><span style="color: #339933;">,</span>
+&nbsp;
+  <span style="color: #006600; font-style: italic;">// The theme name</span>
+  theme<span style="color: #339933;">:</span> <span style="color: #3366CC;">'my-wordpress-theme'</span><span style="color: #339933;">,</span>
+&nbsp;
+  <span style="color: #006600; font-style: italic;">// The local theme folder location</span>
+  pathLocal<span style="color: #339933;">:</span> <span style="color: #3366CC;">'./wp-content/themes'</span><span style="color: #339933;">,</span>
+&nbsp;
+  <span style="color: #006600; font-style: italic;">// The remote theme folder location</span>
+  pathRemote<span style="color: #339933;">:</span> <span style="color: #3366CC;">'./wp-content/themes'</span><span style="color: #339933;">,</span>
+&nbsp;
+  <span style="color: #006600; font-style: italic;">// The remote folder in which to save uploading files and backups</span>
+  backup<span style="color: #339933;">:</span> <span style="color: #3366CC;">'./.wordpress-deploy'</span><span style="color: #339933;">,</span>
+&nbsp;
+  <span style="color: #006600; font-style: italic;">// Files and folders to ignore</span>
+  <span style="color: #006600; font-style: italic;">// Folder paths are relative to the theme folder</span>
+  <span style="color: #006600; font-style: italic;">// To ignore a folder use two patterns: 'folder', 'folder/**'</span>
+  ignore<span style="color: #339933;">:</span> <span style="color: #009900;">&#91;</span><span style="color: #3366CC;">'.DS_Store'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'node_modules'</span><span style="color: #339933;">,</span> <span style="color: #3366CC;">'node_modules/**'</span><span style="color: #009900;">&#93;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span>
+&nbsp;
+module.<span style="color: #660066;">exports</span> <span style="color: #339933;">=</span> config<span style="color: #339933;">;</span></pre>	</div>
+
+	<p class="margin">
+		Example file: <a href="https://github.com/StephanWagner/wordpress-deploy/blob/main/wordpress-deploy.config.js">wordpress-deploy.config.js</a>
+	</p>
+
+	<p class="margin2">
+		You can also provide an argument to use a different config filename:
+	</p>
+
+	<div class="syntax tt">
+		<pre class="text" style="font-family:monospace;">wp-dep --config=my-custom-config.js</pre>	</div>
+
+	<p class="margin2">
+		All config parameters can be used as arguments, for example:
+	</p>
+
+	<div class="syntax tt">
+		<pre class="text" style="font-family:monospace;">wp-dep --theme=my-theme</pre>	</div>
+
+	<h2>License</h2>
+
+	<p>
+		wordpress-deploy is licensed <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a>.
+	</p>
+
+	
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
