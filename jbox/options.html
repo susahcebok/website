@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>jBox Options</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="jBox is a jQuery plugin that makes it easy to create customizable tooltips, modal windows, image galleries and more.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jbox" class="active">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<nav class="jBox-nav">
+  <a href="/jbox/get_started">Get Started</a>
+  <a href="/jbox/documentation">Documentation</a>
+  <a href="/jbox/options" class="active">Options</a>
+  <a href="/jbox/methods">Methods</a>
+  <a href="/jbox/demos">Demos</a>
+  <div class="jBox-nav__spacer"></div>
+  <a class="jBox-nav__download-button nav-download" href="//github.com/susahcebok/jBox/releases" target="_blank"><span class="icon-download"></span>Download @ Github</a>
+  <div class="jBox-nav__github-button">
+    <a class="github-button" href="https://github.com/susahcebok/jBox" data-icon="octicon-star" data-show-count="true" aria-label="Star susahcebok/jBox on GitHub">Star</a>
+  </div>
+</nav>
+
+<div class="jBox-headline-placeholder"></div>
+
+<p>You can set the options for your jBoxes right away or as a second argument when you are using a plugin:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">var</span> options <span style="color: #339933;">=</span> <span style="color: #009900;">&#123;</span>
+  title<span style="color: #339933;">:</span> <span style="color: #3366CC;">'My title'</span><span style="color: #339933;">,</span>
+  content<span style="color: #339933;">:</span> <span style="color: #3366CC;">'My content'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span>
+<span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span>options<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> options<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<p>jBox comes with the default plugins
+<span class="code tt">Tooltip</span>,
+<span class="code tt">Mouse</span> and
+<span class="code tt">Modal</span>.</p>
+
+<p>In addition you can include the plugins
+<span class="code tt">Confirm</span>,
+<span class="code tt">Notice</span> and
+<span class="code tt">Image</span>.</p>
+
+<table class="api" style="margin-top: 50px">
+
+<tr class="title">
+<td colspan="3"><h3>ID<span class="permalink-anchor" id="id"></span><a href="#id" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>id</td>
+<td class="value"><span class="type">string</span></td>
+<td>Choose a unique id, otherwise jBox will set one for you (jBox1, jBox2, ...)</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Dimensions<span class="permalink-anchor" id="dimensions"></span><a href="#dimensions" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>width<br>height</td>
+<td class="value"><span class="string">auto</span>, <span class="type">integer</span></td>
+<td>The width and height of the content area</td>
+</tr>
+
+<tr class="option">
+<td>minWidth<br>minHeight</td>
+<td class="value"><span class="type">integer</span></td>
+<td>Minimal width and height of content area</td>
+</tr>
+
+<tr class="option odd">
+<td>maxWidth<br>maxHeight</td>
+<td class="value"><span class="type">integer</span></td>
+<td>Maximal width and height of content area</td>
+</tr>
+
+<tr class="option">
+<td>responsiveWidth<br>responsiveHeight</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Adjusts width and height to fit the viewport</td>
+</tr>
+
+<tr class="option odd">
+<td>responsiveMinWidth<br>responsiveMinHeight</td>
+<td class="value"><span class="type">integer</span></td>
+<td>Don't adjust width or height below this value (in pixel)</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Attaching jBox<span class="permalink-anchor" id="attaching"></span><a href="#attaching" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>attach</td>
+<td class="value"><span class="type">jQuery selector</span></td>
+<td>A jQuery selector to elements that will open and close your jBox, e.g. <span class="code tt">'.tooltip'</span></td>
+</tr>
+
+<tr class="option">
+<td>trigger</td>
+<td class="value"><span class="string">click</span>,<br>
+<span class="string">mouseenter</span>,<br>
+<span class="string">touchclick</span></td>
+<td>Defines with which event the jBox opens or closes when interacting with the attached element</td>
+</tr>
+
+<tr class="option odd">
+<td>preventDefault</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Prevent the default event when opening jBox, e.g. don't follow the href in a link</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Content<span class="permalink-anchor" id="jbox-content"></span><a href="#jbox-content" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>content</td>
+<td class="value"><span class="type">string</span>,<br><span class="type">jQuery element</span></td>
+<td>Sets the content of your jBox.
+You can use jQuery elements to append elements (set CSS style display to none so the elements won't show up on your page)</td>
+</tr>
+
+<tr class="option">
+<td>getContent</td>
+<td class="value"><span class="type">string</span></td>
+<td>Get the content from an attribute when jBox opens, e.g. <span class="code tt">'data-content'</span>. Use <span class="code tt">'html'</span> to get the attached elements HTML as content</td>
+</tr>
+
+<tr class="option odd">
+<td>title</td>
+<td class="value"><span class="type">string</span></td>
+<td>Adds a title to your jBox</td>
+</tr>
+
+<tr class="option">
+<td>getTitle</td>
+<td class="value"><span class="type">string</span></td>
+<td>Get the title from an attribute when jBox opens, e.g. <span class="code tt">'data-title'</span></td>
+</tr>
+
+<tr class="option odd">
+<td>footer</td>
+<td class="value"><span class="type">string</span></td>
+<td>Adds a footer to your jBox</td>
+</tr>
+
+<tr class="option">
+<td>isolateScroll</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Isolates scrolling to the content container</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>AJAX<span class="permalink-anchor" id="ajax"></span><a href="#ajax" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td colspan="2">ajax: {<br>
+&nbsp;&nbsp;url: <span class="type">null</span>,<br>
+&nbsp;&nbsp;data: <span class="string">''</span><br>
+&nbsp;&nbsp;// ...<br>
+}</td>
+<td>When you set an URL, jBox makes an AJAX request when it opens. You can add any <a href="https://api.jquery.com/jquery.ajax/">jQuery ajax option</a>, e.g. <span class="code tt">beforeSend</span>, <span class="code tt">complete</span>, <span class="code tt">success</span>, etc.
+</td>
+</tr>
+
+<tr class="option">
+<td>↳ url</td>
+<td class="value"><span class="type">string</span></td>
+<td>The URL to send the AJAX request to</td>
+</tr>
+
+<tr class="option odd">
+<td>↳ data</td>
+<td class="value"><span class="type">string</span>, <span class="type">object</span></td>
+<td>Data to send with your AJAX request, e.g. <span class="code tt">{id: 82, limit: 10}</span></td>
+</tr>
+
+<tr class="option">
+<td>↳ reload</td>
+<td class="value"><span class="type">boolean</span>, <i class="string">strict</i></td>
+<td>Resend the AJAX request when jBox opens. Use <span class="code tt">true</span> to send the AJAX request call only once for every element or <span class="code tt">'strict'</span> to resend every time jBox opens</td>
+</tr>
+
+<tr class="option odd">
+<td>↳ getURL</td>
+<td class="value"><span class="type">string</span></td>
+<td>The attribute in the source element where the AJAX request will look for the URL, e.g. <span class="code tt">'data-url'</span></td>
+</tr>
+
+<tr class="option">
+<td>↳ getData</td>
+<td class="value"><span class="type">string</span></td>
+<td>The attribute in the source element where the AJAX request will look for the data, e.g. <span class="code tt">'data-ajax'</span></td>
+</tr>
+
+<tr class="option odd">
+<td>↳ setContent</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Automatically set the response as new content when the AJAX request is finished</td>
+</tr>
+
+<tr class="option">
+<td>↳ loadingClass</td>
+<td class="value"><span class="type">boolean</span>, <span class="type">string</span></td>
+<td>Add a class to the wrapper when jBox is loading. Set to the desired class name or to <span class="code tt">true</span> to use the default class name <span class="code tt">'jBox-loading'</span></td>
+</tr>
+
+<tr class="option odd">
+<td>↳ spinner</td>
+<td class="value"><span class="type">boolean</span>, <span class="type">string</span></td>
+<td>Hides the current content and adds a spinner while loading. You can pass HTML content to add your own spinner, e.g. spinner: <span class="code tt">'&lt;div class="mySpinner"&gt;&lt;/div&gt;'</span></td>
+</tr>
+
+<tr class="option">
+<td>↳ spinnerDelay</td>
+<td class="value"><span class="type">integer</span></td>
+<td>Milliseconds to wait until spinner appears</td>
+</tr>
+
+<tr class="option odd">
+<td>↳ spinnerReposition</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Repositions jBox when the spinner is added or removed</td>
+</tr>
+
+<tr class="option">
+<td>cancelAjaxOnClose</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Cancels the ajax call when jBox closes and it hasn't finished loading yet</td>
+</tr>
+
+
+<tr class="title">
+<td colspan="3"><h3>Position<span class="permalink-anchor" id="position"></span><a href="#position" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>target</td>
+<td class="value"><span class="type">jQuery selector</span></td>
+<td>The jQuery selector to the target element where jBox will be opened. If no element is found, jBox will use the attached element as target</td>
+</tr>
+
+<tr class="option">
+<td>position</td>
+<td class="value"><span class="type">object</span></td>
+<td>Set an object with the horizontal position <span class="code tt">x</span> and the vertical position <span class="code tt">y</span>, e.g. <span class="code tt"><span style="white-space: nowrap">{x: 'right',</span> <span style="white-space: nowrap">y: 'center'}</span></span>.
+You can also set numbers for an absolute position</td>
+</tr>
+
+<tr class="option odd">
+<td>outside</td>
+<td class="value"><span class="string">x</span>, <span class="string">y</span>, <span class="string">xy</span></td>
+<td>Moves your jBox outside of the target element</td>
+</tr>
+
+<tr class="option">
+<td>offset</td>
+<td class="value"><span class="type">integer</span>, <span class="type">object</span></td>
+<td>Offset to final position. You can set different values for <span class="code tt">x</span> and <span class="code tt">y</span> with an object, e.g. <span class="code" style="white-space: nowrap">{x: 15, y: -10}</span></td>
+</tr>
+
+<tr class="option odd">
+<td>attributes</td>
+<td class="value"><span class="type">object</span></td>
+<td>Defines which CSS attributes should be used, e.g. <span class="code tt"><span style="white-space: nowrap">{x: 'right',</span> <span style="white-space: nowrap">y: 'bottom'}</span></span>.
+Note that <span class="code tt">right</span> and <span class="code tt">bottom</span> can only be used when your position values are integer, e.g. <span class="code" style="white-space: nowrap">{x: 300, y: 20}</span></td>
+</tr>
+
+<tr class="option">
+<td>fixed</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Your jBox will stay on position when scrolling</td>
+</tr>
+
+<tr class="option odd">
+<td>adjustPosition</td>
+<td class="value"><span class="string">flip</span>, <span class="string">move</span>,<br>
+<span class="type">boolean</span></td>
+<td>Adjusts your jBoxes position if there is not enough space.
+The value <span class="code tt">'flip'</span> positions the jBox on the opposite outside position, the value <span class="code tt">'move'</span> works only with a pointer. Set to <span class="code tt">true</span> to use both.
+This option overrides the reposition options</td>
+</tr>
+
+<tr class="option">
+<td>adjustTracker</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>By default jBox adjusts its position when it opens or when the window size changes, set to true to also adjust when scrolling</td>
+</tr>
+
+<tr class="option odd">
+<td>adjustDistance</td>
+<td class="value"><span class="type">integer</span>, <span class="type">object</span></td>
+<td>The minimal distance to the viewport edge while adjusting. Use an object to set different values, e.g. <span class="code tt"><span style="white-space: nowrap">{top: 50,</span> <span style="white-space: nowrap">right: 5,</span> <span style="white-space: nowrap">bottom: 20,</span> <span style="white-space: nowrap">left: 5}</span></span>
+</tr>
+
+<tr class="option">
+<td>reposition</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Calculates new position when the window-size changes</td>
+</tr>
+
+<tr class="option odd">
+<td>repositionOnOpen</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Calculates new position each time jBox opens (rather than only when it opens the first time)</td>
+</tr>
+
+<tr class="option">
+<td>repositionOnContent</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Calculates new position when the content changes with <span class="code tt">.setContent()</span> or <span class="code tt">.setTitle()</span></td>
+</tr>
+
+<tr class="option odd">
+<td>holdPosition</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Keeps current position if space permits. Applies only to 'Modal' type.</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Pointer<span class="permalink-anchor" id="pointer"></span><a href="#pointer" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>pointer</td>
+<td class="value"><span class="type">boolean</span>,<br>
+<span class="string">left</span>, <span class="string">right</span>,<br>
+<span class="string">top</span>, <span class="string">bottom</span>,<br>
+<span class="string">center</span></td>
+<td>Your pointer will always point towards the target element, so the option <span class="code tt">outside</span> needs to be <span class="code tt">'x'</span> or <span class="code tt">'y'</span>.
+By default the pointer is centered, set a position to move it to any side.
+You can also add an offset, e.g. <span class="code tt">'left:30'</span> or <span class="code tt">'center:-20'</span></td>
+</tr>
+
+<tr class="option">
+<td>pointTo</td>
+<td class="value"><i class="string">target</i>,<br>
+<span class="string">left</span>, <span class="string">right</span>,<br>
+<span class="string">top</span>, <span class="string">bottom</span></td>
+<td>Setting something else than <span class="code tt">'target'</span> will add a pointer even if there is no target element set or found</td>
+</tr>
+
+
+<tr class="title">
+<td colspan="3"><h3>Animations<span class="permalink-anchor" id="animations"></span><a href="#animations" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>fade</td>
+<td class="value"><span class="type">integer</span></td>
+<td>Fade duration in ms, set <span class="code tt">0</span> or <span class="code tt">false</span> to disable</td>
+</tr>
+
+<tr class="option">
+<td>animation</td>
+<td class="value"><span class="type">object</span>, <span class="type">boolean</span>,<br>
+<span class="string">zoomIn</span>, <span class="string">zoomOut</span>,<br>
+<span class="string">pulse</span>, <span class="string">move</span>,<br>
+<span class="string">slide</span>, <span class="string">flip</span>,<br>
+<span class="string">tada</span></td>
+<td>Animation when jBox opens or closes.<br>
+To use different animations for opening and closing, use an object: <span class="code tt"><span style="white-space: nowrap">{open: 'tada',</span> <span style="white-space: nowrap">close: 'flip'}</span></span>.
+You can also set the direction of the <span class="code tt">move</span> and <span class="code tt">slide</span> animations: <span class="code tt"><span style="white-space: nowrap">{open: 'move:right',</span> <span style="white-space: nowrap">close: 'slide:top'}</span></span></td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Appearance<span class="permalink-anchor" id="appearance"></span><a href="#appearance" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>theme</td>
+<td class="value"><span class="type">string</span></td>
+<td>Set a jBox theme class, e.g. <span class="code tt">'TooltipDark'</span></td>
+</tr>
+
+<tr class="option">
+<td>addClass</td>
+<td class="value"><span class="type">string</span></td>
+<td>Adds classes to the wrapper</td>
+</tr>
+
+<tr class="option odd">
+<td>overlay</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Adds an overlay to hide page content when jBox opens (adjust color and opacity with CSS)</td>
+</tr>
+
+<tr class="option">
+<td>overlayClass</td>
+<td class="value"><span class="type">string</span></td>
+<td>Add a class name to the overlay</td>
+</tr>
+
+<tr class="option odd">
+<td>zIndex</td>
+<td class="value"><span class="type">integer</span>, <span class="string">auto</span></td>
+<td>Use a high z-index, or set to <span class="code tt">'auto'</span> to move the jBox to the very top when it opens</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Delays<span class="permalink-anchor" id="delays"></span><a href="#delays" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>delayOpen</td>
+<td class="value"><span class="type">integer</span></td>
+<td>Delay opening in ms. Note that the delay will be ignored if your jBox didn't finish closing</td>
+</tr>
+
+<tr class="option">
+<td>delayClose</td>
+<td class="value"><span class="type">integer</span></td>
+<td>Delay closing in ms. Nnote that there is always a closing delay of at least 10ms to ensure jBox won't be closed when opening right away</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Closing jBox<span class="permalink-anchor" id="closing-jbox"></span><a href="#closing-jbox" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>closeOnEsc</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Close jBox when pressing [esc] key</td>
+</tr>
+
+<tr class="option">
+<td>closeOnClick</td>
+<td class="value"><span class="type">boolean</span>, <span class="string">body</span>,<br>
+<span class="string">box</span>, <span class="string">overlay</span></td>
+<td>Close jBox with a mouseclick: <span class="code tt">true</span> closes when you click anywhere, <span class="code tt">'overlay'</span> when clicking on the overlay, <span class="code tt">'box'</span> when clicking on the jBox itself and <span class="code tt">'body'</span> when you click anywhere but the jBox</td>
+</tr>
+
+<tr class="option odd">
+<td>closeOnMouseleave</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Close jBox when the mouse leaves the jBox area or the area of the attached element</td>
+</tr>
+
+<tr class="option">
+<td>closeButton</td>
+<td class="value"><span class="type">boolean</span>, <span class="string">overlay</span>,<br>
+<span class="string">title</span>, <span class="string">box</span></td>
+<td>Adds a close button to your jBox. The value <span class="code tt">true</span> will add the button to the overlay, title or the jBox itself, in that order if any of those elements can be found</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Other options<span class="permalink-anchor" id="other-options"></span><a href="#other-options" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>appendTo</td>
+<td class="value"><span class="type">jQuery element</span></td>
+<td>The element your jBox will be appended to. Any other element than <span class="code tt">$('body')</span> is only useful for fixed positions or when position values are numbers</td>
+</tr>
+
+<tr class="option">
+<td>createOnInit</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Creates jBox and makes it available in DOM when it's being initialized, otherwise it will be created when it opens for the first time</td>
+</tr>
+
+<tr class="option odd">
+<td>blockScroll</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Blocks scrolling when jBox is open</td>
+</tr>
+
+<tr class="option">
+<td>blockScrollAdjust</td>
+<td class="value"><span class="type">boolean</span>, <span class="type">string</span>, <span class="type">array</span></td>
+<td>Adjust page elements to avoid content jumps when scrolling is blocked. See more here: <a href="https://github.com/StephanWagner/unscroll" target="_blank">https://github.com&#8203;/StephanWagner/&#8203;unscroll</a>
+</td>
+</tr>
+
+<tr class="option odd">
+<td>draggable</td>
+<td class="value"><span class="type">boolean</span>, <span class="string">title</span>,<br>
+<span class="type">jQuery selector</span></td>
+<td>Makes your jBox draggable. Use <span class="code tt">title</span> or provide the selector of any child element of jBox to use as the handle.
+When using <span class="code tt">true</span> you can not interact with elements like textfields in the content area</td>
+</tr>
+
+<tr class="option">
+<td>dragOver</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>When you have multiple draggable jBoxes, the one you select will always move over the other ones</td>
+</tr>
+
+<tr class="option odd">
+<td>autoClose</td>
+<td class="value"><span class="type">integer</span>, <span class="type">boolean</span></td>
+<td>Time in ms when jBox will close automatically after it was opened</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Audio<span class="permalink-anchor" id="audio"></span><a href="#audio" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>preloadAudio</td>
+<td class="value"><span class="type">boolean</span>, <span class="type">array</span></td>
+<td>Preloads the audio files set in option <span class="code tt">audio</span>. You can also preload other audio files, e.g. <span class="code tt">['src_to_file.mp3', 'src_to_file.ogg']</span></td>
+</tr>
+
+<tr class="option">
+<td>audio</td>
+<td class="value"><span class="type">string</span>, <span class="type">object</span></td>
+<td>The URL to an audio file to play when jBox opens. Set the URL without file extension, jBox will look for an <span class="code tt">.mp3</span> and <span class="code tt">.ogg</span> file. To play audio when jBox closes, use an object, e.g. <span class="code tt">{open: 'src_to_audio1', close: 'src_to_audio2'}</span></td>
+</tr>
+
+<tr class="option odd">
+<td>volume</td>
+<td class="value"><span class="type">integer</span>, <span class="type">object</span></td>
+<td>The volume of the audio in percent. To have different volumes for opening and closeing, use an object, e.g. <span class="code tt">{open: 75, close: 100}</span></td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Events<span class="permalink-anchor" id="events"></span><a href="#events" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>onInit</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when jBox is initialized. Note that you can use <span class="code tt">this</span> in the event functions, it refers to your jBox object, e.g. <span class="code tt">onInit: <span style="white-space: nowrap">function() {</span> <span style="white-space: nowrap">this.open(); }</span></span></td>
+</tr>
+
+<tr class="option">
+<td>onAttach</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when jBox attached itself to elements</td>
+</tr>
+
+<tr class="option odd">
+<td>onPosition</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when jBox is positioned</td>
+</tr>
+
+<tr class="option">
+<td>onCreated</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when jBox is created and is availible in DOM</td>
+</tr>
+
+<tr class="option odd">
+<td>onOpen</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when jBox opens</td>
+</tr>
+
+<tr class="option">
+<td>onOpenComplete</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when jBox is completely open (when fading finished)</td>
+</tr>
+
+<tr class="option odd">
+<td>onClose</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when jBox closes</td>
+</tr>
+
+<tr class="option">
+<td>onCloseComplete</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when jBox is completely closed (when fading finished)</td>
+</tr>
+
+<tr class="option odd">
+<td>onDragStart</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when dragging starts</td>
+</tr>
+
+<tr class="option">
+<td>onDragEnd</td>
+<td class="value"><span class="type">function</span></td>
+<td>Fired when dragging finished</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Additional options for plugin Confirm<span class="permalink-anchor" id="options-confirm"></span><a href="#options-confirm" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>confirmButton</td>
+<td class="value"><span class="type">string</span></td>
+<td>Text for the submit button</td>
+</tr>
+
+<tr class="option">
+<td>cancelButton</td>
+<td class="value"><span class="type">string</span></td>
+<td>Text for the cancel button</td>
+</tr>
+
+<tr class="option odd">
+<td>confirm</td>
+<td class="value"><span class="type">function</span></td>
+<td>Function to execute when clicking the submit button. By default jBox will use the <span class="code tt">onclick</span> or <span class="code tt">href</span> attribute in that order if found</td>
+</tr>
+
+<tr class="option">
+<td>cancel</td>
+<td class="value"><span class="type">function</span></td>
+<td>Function to execute when clicking the cancel button</td>
+</tr>
+
+<tr class="option odd">
+<td>closeOnConfirm</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Close jBox when the user clicks the confirm button</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Additional options for plugin Image<span class="permalink-anchor" id="options-image"></span><a href="#options-image" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>src</td>
+<td class="value"><span class="type">string</span></td>
+<td>The attribute to get the image source from, e.g. <span class="code tt">'href'</span> for a link: <span class="code tt">&lt;a href="/path/image.jpg"&gt;</span></td>
+</tr>
+
+<tr class="option">
+<td>gallery</td>
+<td class="value"><span class="type">string</span></td>
+<td>The attribute to set the galleries, e.g. <span class="code tt" style="white-space: nowrap">'data-jbox-gallery'</span>.
+When changing this option, make sure you check the option <span class="code tt" style="white-space: nowrap">attach</span>, as jBox Image gets attached to <span class="code tt" style="white-space: nowrap">[data-jbox-gallery]</span> by default.
+</td>
+</tr>
+
+<tr class="option odd">
+<td>imageLabel</td>
+<td class="value"><span class="type">string</span></td>
+<td>The attribute where jBox gets the image label from, e.g. <span class="code tt" style="white-space: nowrap">'title'</span></td>
+</tr>
+
+<tr class="option">
+<td>imageFade</td>
+<td class="value"><span class="type">integer</span></td>
+<td>The fade duration for images in ms</td>
+</tr>
+
+<tr class="option odd">
+<td>imageSize</td>
+<td class="value"><span class="string">cover</span>, <span class="string">contain</span>,<br>
+<span class="string">auto</span>, <span class="type">string</span></td>
+<td>How to display the images. Use CSS styles of <span class="code tt" style="white-space: nowrap">background-position</span>, e.g. <span class="code tt">'cover'</span>, <span class="code tt" style="white-space: nowrap">'50% auto'</span></td>
+</tr>
+
+<tr class="option">
+<td>imageCounter</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Set to <span class="code tt">true</span> to add an image counter, e.g. 4/20</td>
+</tr>
+
+<tr class="option odd">
+<td>imageCounterSeparator</td>
+<td class="value"><span class="type">string</span></td>
+<td>HTML to separate the current image number from all image numbers, e.g. <span class="code tt" style="white-space: nowrap">'/'</span> or <span class="code tt" style="white-space: nowrap">' of '</span></td>
+</tr>
+
+<tr class="option">
+<td>downloadButton</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Adds a download button</td>
+</tr>
+
+<tr class="option odd">
+<td>downloadButtonText</td>
+<td class="value"><span class="type">string</span></td>
+<td>Text for the download button</td>
+</tr>
+
+<tr class="option">
+<td>downloadButtonUrl</td>
+<td class="value"><span class="type">string</span></td>
+<td>The attribute at the source element where to find the image to download, e.g. <span class="code tt" style="white-space: nowrap">data-download="/path/image.jpg"</span>. If none provided, the currently active image will be downloaded</td>
+</tr>
+
+<tr class="option odd">
+<td>mobileImageAttr</td>
+<td class="value"><span class="type">string</span></td>
+<td>The attribute to look for an mobile version of the image</td>
+</tr>
+
+<tr class="option">
+<td>mobileImageBreakpoint</td>
+<td class="value"><span class="type">integer</span></td>
+<td>The upper breakpoint to load the mobile image</td>
+</tr>
+
+<tr class="option odd">
+<td>preloadFirstImage</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Preload the first image when page is loaded</td>
+</tr>
+
+<tr class="title">
+<td colspan="3"><h3>Additional options for plugin Notice<span class="permalink-anchor" id="options-notice"></span><a href="#options-notice" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>color</td>
+<td class="value"><span class="string">black</span>, <span class="string">red</span>, <span class="string">green</span>,<br>
+<span class="string">blue</span>, <span class="string">yellow</span></td>
+<td>Add a color to your notices</td>
+</tr>
+
+<tr class="option">
+<td>stack</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Set to false to disable notice-stacking</td>
+</tr>
+
+<tr class="option odd">
+<td>stackSpacing</td>
+<td class="value"><span class="type">integer</span></td>
+<td>Spacing between notices when they stack</td>
+</tr>
+
+<tr class="option">
+<td>delayOnHover</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>When hovering the notice it won't close</td>
+</tr>
+
+<tr class="option odd">
+<td>showCountdown</td>
+<td class="value"><span class="type">boolean</span></td>
+<td>Adds a progress bar showing the time it will take until the notice closes</td>
+</tr>
+
+</table>
+
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
