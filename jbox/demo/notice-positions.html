@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>jBox Demo · Notice positions</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="jBox is a jQuery plugin that makes it easy to create customizable tooltips, modal windows, image galleries and more.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox" class="active">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<nav class="jBox-nav">
+  <a href="/jbox/get_started">Get Started</a>
+  <a href="/jbox/documentation">Documentation</a>
+  <a href="/jbox/options">Options</a>
+  <a href="/jbox/methods">Methods</a>
+  <a href="/jbox/demos">Demos</a>
+  <div class="jBox-nav__spacer"></div>
+  <a class="jBox-nav__download-button nav-download" href="//github.com/susahcebok/jBox/releases" target="_blank"><span class="icon-download"></span>Download @ Github</a>
+  <div class="jBox-nav__github-button">
+    <a class="github-button" href="https://github.com/susahcebok/jBox" data-icon="octicon-star" data-show-count="true" aria-label="Star StephanWagner/jBox on GitHub">Star</a>
+  </div>
+</nav>
+
+
+<a href="/jBox/demo/notice-positions/download" class="demo-icon-download icon-download" data-tooltip-blue="Download HTML file"></a>
+<a href="https://jsfiddle.net/StephanWagner/hpa1qpz9" class="demo-icon-fiddle icon-fiddle" data-tooltip-blue="Edit with JSFiddle" target="_blank"></a>
+
+<h2>jBox Demo: Notice positions</h2>
+
+<link rel="stylesheet" href="/css/jBox/demo/notice-positions.css">
+
+<div class="demo-wrapper">
+<script>
+
+// Default notice
+
+function demoNoticeDefault()
+{
+  new jBox('Notice', {
+    content: 'I\'m up here!',
+    color: 'black'
+  });
+}
+
+
+// Notice at the bottom right
+
+function demoNoticeBottomRight()
+{
+  new jBox('Notice', {
+    content: 'I\'m down here!',
+    color: 'black',
+    
+    // Notices have a fixed position, that's why you need to change the attribute option to move them
+    attributes: {
+      x: 'right',
+      y: 'bottom'
+    }
+  });
+}
+
+
+// Notice at the bottom left with an offset
+function demoNoticeBottomLeft() {
+  new jBox('Notice', {
+    content: 'I have an offset!',
+    color: 'black',
+    attributes: {
+      x: 'left',
+      y: 'bottom'
+    },
+    
+    // The position attribute defines the distance to the window edges
+    position: {
+      x: 50,
+      y: 5
+    },
+    
+    // We disable responsive positions or this demo
+    responsivePositions: null
+  });
+}
+</script>
+
+<div id="demo-container">
+
+  <button onclick="demoNoticeDefault()">Default</button>
+  <br>
+  <button onclick="demoNoticeBottomRight()">Bottom right</button>
+  <br>
+  <button onclick="demoNoticeBottomLeft()">Bottom left with offset</button>
+
+</div></div>
+
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
