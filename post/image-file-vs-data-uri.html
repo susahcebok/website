@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Image file vs data URI · Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="Now, that Internet Explorer 7 is practically dead we can finally take full advantage of data URIs without having to worry about browser support.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/blog" class="active">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<div class="article-author">August 2014</div>
+
+<h1>Image file vs data URI</h1>
+
+<p><a href="https://en.wikipedia.org/wiki/Data_URI_scheme" target="_blank">Data URIs</a> aren't new, but now,
+that <a href="https://gs.statcounter.com/#browser_version_partially_combined-ww-monthly-201402-201408" target="_blank">IE7 is practically dead</a>
+and <a href="https://www.microsoft.com/en-us/microsoft-365/windows/end-of-ie-support" target="_blank">IE8  won't be around for too much longer</a> (fingers crossed),
+we can finally take full advantage of them without having to worry about browser support or spending time to create fallbacks.</p>
+
+<h2>What's the advantage?</h2>
+
+<p>The biggest advantage is that data URIs save requests. Requests are next to document size the biggest issue concerning page load speed.
+Less requests means faster page load.</p>
+
+<h2>How to use data URIs?</h2>
+
+<p>Once you <a href="/online-image-to-base64-data-uri-converter">converted an image</a>, just place the data URI code where you used to place the image src:</p>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">img</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;/path/image.png&quot;</span> <span style="color: #000066;">alt</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;&quot;</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">img</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYOUXAQgwAABFACmHqsnDAAAAAElFTkSuQmCC&quot;</span> <span style="color: #000066;">alt</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;&quot;</span>&gt;</span></pre></div>
+
+<div class="syntax tt">
+<pre class="css" style="font-family:monospace;"><span style="color: #6666ff;">.image</span> <span style="color: #00AA00;">&#123;</span> <span style="color: #000000; font-weight: bold;">background</span><span style="color: #00AA00;">:</span> <span style="color: #9932cc;">url</span><span style="color: #00AA00;">&#40;</span><span style="color: #ff0000; font-style: italic;">/path/image.png</span><span style="color: #00AA00;">&#41;</span><span style="color: #00AA00;">;</span> <span style="color: #00AA00;">&#125;</span>
+<span style="color: #6666ff;">.image</span> <span style="color: #00AA00;">&#123;</span> <span style="color: #000000; font-weight: bold;">background</span><span style="color: #00AA00;">:</span> <span style="color: #9932cc;">url</span><span style="color: #00AA00;">&#40;</span>data<span style="color: #00AA00;">:</span><span style="color: #9932cc;">image</span>/png<span style="color: #00AA00;">;</span>base64<span style="color: #00AA00;">,</span>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYOUXAQgwAABFACmHqsnDAAAAAElFTkSuQmCC<span style="color: #00AA00;">&#41;</span><span style="color: #00AA00;">;</span> <span style="color: #00AA00;">&#125;</span></pre></div>
+
+<h2>How to convert an image?</h2>
+
+<p>You can find quite a view <a href="https://www.google.com/?q=online+image+to+data+uri+converter#q=online+image+to+data+uri+converter" target="_blank">online converters on google</a>.
+I also created an <a href="/tools/image-to-data-uri-converter">easy to use drag and drop converter</a> which you can find in the <a href="/tools">Tools</a> section.</p>
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.min.js?5f1a"></script>
+</body>
+</html>
