@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Only CSS loading spinner · Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Stephan Wagner, stephanwagner.me@gmail.com">
+<meta name="description" content="A lightweight pure CSS loading spinner. Easy as pie: Add a class, have a spinner!">
+<link rel="icon" type="image/png" href="/img/favicon/favicon-code-512.png">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/" class="active">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox">jBox</a>
+    <a href="/" id="stephan"><span>Stephan Wagner</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<div class="article-author">April 2014</div>
+
+<h1>Only CSS loading spinner</h1>
+
+<p>Now that optimizing webpages for retina displays and mobile devices becomes increasingly important,
+you find <a href="https://www.google.com/search?q=only+css+loading+spinner" target="_blank">tons of webpages</a> offering CSS loading spinners.
+
+Unfortunately many of them are quite heavy and require you to add elements to your page in order to create them.
+I find it most convenient to simply add a class to the element in which I like to show a spinner.
+Back in the day the class would set an animated GIF as background image. With modern browsers we can achieve this with pure CSS.
+</p>
+
+<h2>The CSS</h2>
+
+<p>I like to have things lightweight, here are a few very simple spinners:</p>
+
+<script>
+jQuery(document).ready(function() {
+  jQuery('.spinner-demo').click(function() {
+    jQuery('.spinner-demo.demo').removeClass('demo');
+    jQuery(this).addClass('demo');
+
+    jQuery('.spinner-demo-code.active').removeClass('active');
+    jQuery('#spinner-demo-code' + this.getAttribute('data-demo-id')).addClass('active');
+  });
+});
+</script>
+
+<div class="clearfix">
+<div class="spinner-demo spinner-demo1 demo" data-demo-id="1"></div>
+<div class="spinner-demo spinner-demo2" data-demo-id="2"></div>
+<div class="spinner-demo spinner-demo3" data-demo-id="3"></div>
+<div class="spinner-demo spinner-demo4" data-demo-id="4"></div>
+<div class="spinner-demo spinner-demo5" data-demo-id="5"></div>
+</div>
+
+<div id="spinner-demo-code1" class="spinner-demo-code active syntax tt">
+<pre class="css" style="font-family:monospace;"><span style="color: #3F84D9; font-weight: bold;">@keyframes</span> spinner <span style="color: #00AA00;">&#123;</span>
+  to <span style="color: #00AA00;">&#123;</span><span style="color: #000000; font-weight: bold;">transform</span><span style="color: #00AA00;">:</span> <span style="color: #9932cc;">rotate</span><span style="color: #00AA00;">&#40;</span><span style="color: #933;">360deg</span><span style="color: #00AA00;">&#41;</span><span style="color: #00AA00;">;</span><span style="color: #00AA00;">&#125;</span>
+<span style="color: #00AA00;">&#125;</span>
+&nbsp;
+<span style="color: #6666ff;">.spinner</span><span style="color: #00AA00;">:</span><span style="color: #F5758F;">before</span> <span style="color: #00AA00;">&#123;</span>
+  <span style="color: #000000; font-weight: bold;">content</span><span style="color: #00AA00;">:</span> <span style="color: #ff0000;">''</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">box-sizing</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">border-box</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">position</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">absolute</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">width</span><span style="color: #00AA00;">:</span> <span style="color: #933;">20px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">height</span><span style="color: #00AA00;">:</span> <span style="color: #933;">20px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-10px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-10px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-radius</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border</span><span style="color: #00AA00;">:</span> <span style="color: #933;">2px</span> <span style="color: #993333;">solid</span> <span style="color: #cc00cc;">#ccc</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-top-color</span><span style="color: #00AA00;">:</span> <span style="color: #cc00cc;">#000</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">animation</span><span style="color: #00AA00;">:</span> spinner <span style="color: #933;">.6s</span> linear <span style="color: #993333;">infinite</span><span style="color: #00AA00;">;</span>
+<span style="color: #00AA00;">&#125;</span></pre></div>
+<div id="spinner-demo-code2" class="spinner-demo-code syntax tt">
+<pre class="css" style="font-family:monospace;"><span style="color: #3F84D9; font-weight: bold;">@keyframes</span> spinner <span style="color: #00AA00;">&#123;</span>
+  to <span style="color: #00AA00;">&#123;</span><span style="color: #000000; font-weight: bold;">transform</span><span style="color: #00AA00;">:</span> <span style="color: #9932cc;">rotate</span><span style="color: #00AA00;">&#40;</span><span style="color: #933;">360deg</span><span style="color: #00AA00;">&#41;</span><span style="color: #00AA00;">;</span><span style="color: #00AA00;">&#125;</span>
+<span style="color: #00AA00;">&#125;</span>
+&nbsp;
+<span style="color: #6666ff;">.spinner</span><span style="color: #00AA00;">:</span><span style="color: #F5758F;">before</span> <span style="color: #00AA00;">&#123;</span>
+  <span style="color: #000000; font-weight: bold;">content</span><span style="color: #00AA00;">:</span> <span style="color: #ff0000;">''</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">box-sizing</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">border-box</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">position</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">absolute</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">width</span><span style="color: #00AA00;">:</span> <span style="color: #933;">30px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">height</span><span style="color: #00AA00;">:</span> <span style="color: #933;">30px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-15px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-15px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-radius</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border</span><span style="color: #00AA00;">:</span> <span style="color: #933;">1px</span> <span style="color: #993333;">solid</span> <span style="color: #cc00cc;">#ccc</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-top-color</span><span style="color: #00AA00;">:</span> <span style="color: #cc00cc;">#07d</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">animation</span><span style="color: #00AA00;">:</span> spinner <span style="color: #933;">.6s</span> linear <span style="color: #993333;">infinite</span><span style="color: #00AA00;">;</span>
+<span style="color: #00AA00;">&#125;</span></pre></div>
+<div id="spinner-demo-code3" class="spinner-demo-code syntax tt">
+<pre class="css" style="font-family:monospace;"><span style="color: #3F84D9; font-weight: bold;">@keyframes</span> spinner <span style="color: #00AA00;">&#123;</span>
+  to <span style="color: #00AA00;">&#123;</span><span style="color: #000000; font-weight: bold;">transform</span><span style="color: #00AA00;">:</span> <span style="color: #9932cc;">rotate</span><span style="color: #00AA00;">&#40;</span><span style="color: #933;">360deg</span><span style="color: #00AA00;">&#41;</span><span style="color: #00AA00;">;</span><span style="color: #00AA00;">&#125;</span>
+<span style="color: #00AA00;">&#125;</span>
+&nbsp;
+<span style="color: #6666ff;">.spinner</span><span style="color: #00AA00;">:</span><span style="color: #F5758F;">before</span> <span style="color: #00AA00;">&#123;</span>
+  <span style="color: #000000; font-weight: bold;">content</span><span style="color: #00AA00;">:</span> <span style="color: #ff0000;">''</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">box-sizing</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">border-box</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">position</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">absolute</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">width</span><span style="color: #00AA00;">:</span> <span style="color: #933;">20px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">height</span><span style="color: #00AA00;">:</span> <span style="color: #933;">20px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-10px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-10px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-radius</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border</span><span style="color: #00AA00;">:</span> <span style="color: #933;">2px</span> <span style="color: #993333;">solid</span> <span style="color: #dc143c;">transparent</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-top-color</span><span style="color: #00AA00;">:</span> <span style="color: #cc00cc;">#07d</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-bottom-color</span><span style="color: #00AA00;">:</span> <span style="color: #cc00cc;">#07d</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">animation</span><span style="color: #00AA00;">:</span> spinner <span style="color: #933;">.8s</span> ease <span style="color: #993333;">infinite</span><span style="color: #00AA00;">;</span>
+<span style="color: #00AA00;">&#125;</span></pre></div>
+<div id="spinner-demo-code4" class="spinner-demo-code syntax tt">
+<pre class="css" style="font-family:monospace;"><span style="color: #3F84D9; font-weight: bold;">@keyframes</span> spinner <span style="color: #00AA00;">&#123;</span>
+  to <span style="color: #00AA00;">&#123;</span><span style="color: #000000; font-weight: bold;">transform</span><span style="color: #00AA00;">:</span> <span style="color: #9932cc;">rotate</span><span style="color: #00AA00;">&#40;</span><span style="color: #933;">360deg</span><span style="color: #00AA00;">&#41;</span><span style="color: #00AA00;">;</span><span style="color: #00AA00;">&#125;</span>
+<span style="color: #00AA00;">&#125;</span>
+&nbsp;
+<span style="color: #6666ff;">.spinner</span><span style="color: #00AA00;">:</span><span style="color: #F5758F;">before</span> <span style="color: #00AA00;">&#123;</span>
+  <span style="color: #000000; font-weight: bold;">content</span><span style="color: #00AA00;">:</span> <span style="color: #ff0000;">''</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">box-sizing</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">border-box</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">position</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">absolute</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">width</span><span style="color: #00AA00;">:</span> <span style="color: #933;">20px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">height</span><span style="color: #00AA00;">:</span> <span style="color: #933;">20px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-10px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-10px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-radius</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">2px</span> <span style="color: #993333;">solid</span> <span style="color: #cc00cc;">#07d</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-right</span><span style="color: #00AA00;">:</span> <span style="color: #933;">2px</span> <span style="color: #993333;">solid</span> <span style="color: #dc143c;">transparent</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">animation</span><span style="color: #00AA00;">:</span> spinner <span style="color: #933;">.6s</span> linear <span style="color: #993333;">infinite</span><span style="color: #00AA00;">;</span>
+<span style="color: #00AA00;">&#125;</span></pre></div>
+<div id="spinner-demo-code5" class="spinner-demo-code syntax tt">
+<pre class="css" style="font-family:monospace;"><span style="color: #3F84D9; font-weight: bold;">@keyframes</span> spinner <span style="color: #00AA00;">&#123;</span>
+  to <span style="color: #00AA00;">&#123;</span><span style="color: #000000; font-weight: bold;">transform</span><span style="color: #00AA00;">:</span> <span style="color: #9932cc;">rotate</span><span style="color: #00AA00;">&#40;</span><span style="color: #933;">360deg</span><span style="color: #00AA00;">&#41;</span><span style="color: #00AA00;">;</span><span style="color: #00AA00;">&#125;</span>
+<span style="color: #00AA00;">&#125;</span>
+&nbsp;
+<span style="color: #6666ff;">.spinner</span><span style="color: #00AA00;">:</span><span style="color: #F5758F;">before</span> <span style="color: #00AA00;">&#123;</span>
+  <span style="color: #000000; font-weight: bold;">content</span><span style="color: #00AA00;">:</span> <span style="color: #ff0000;">''</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">box-sizing</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">border-box</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">position</span><span style="color: #00AA00;">:</span> <span style="color: #993333;">absolute</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">width</span><span style="color: #00AA00;">:</span> <span style="color: #933;">20px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">height</span><span style="color: #00AA00;">:</span> <span style="color: #933;">20px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-top</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-10px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">margin-left</span><span style="color: #00AA00;">:</span> <span style="color: #933;">-10px</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-radius</span><span style="color: #00AA00;">:</span> <span style="color: #933;">50%</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border</span><span style="color: #00AA00;">:</span> <span style="color: #933;">1px</span> <span style="color: #993333;">solid</span> <span style="color: #cc00cc;">#f6f</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-top-color</span><span style="color: #00AA00;">:</span> <span style="color: #cc00cc;">#0e0</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-right-color</span><span style="color: #00AA00;">:</span> <span style="color: #cc00cc;">#0dd</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">border-bottom-color</span><span style="color: #00AA00;">:</span> <span style="color: #cc00cc;">#f90</span><span style="color: #00AA00;">;</span>
+  <span style="color: #000000; font-weight: bold;">animation</span><span style="color: #00AA00;">:</span> spinner <span style="color: #933;">.6s</span> linear <span style="color: #993333;">infinite</span><span style="color: #00AA00;">;</span>
+<span style="color: #00AA00;">&#125;</span></pre></div>
+
+<p class="margin">
+Play a little with the CSS, there are many ways to customize your spinner.
+If you want to change the spinning speed for example, reduce the animation duration, e.g. <span class="code tt" style="white-space: nowrap">spinner .4s linear infinite</span>.
+</p>
+
+<h2>Adding your spinner</h2>
+
+<p>I usually use <a href="http://jquery.com/">jQuery</a> to add and remove the spinner:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;">$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#mySpinner'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">addClass</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'spinner'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#mySpinner'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">removeClass</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'spinner'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<div class="demo" id="mySpinner" style="padding-bottom: 0;">
+<button class="button" onclick="$('#mySpinner').addClass('spinner');" style="margin: 0 15px 10px 0;">Add spinner</button><button class="button" onclick="$('#mySpinner').removeClass('spinner');" style="margin: 0 0 10px 0;">Remove spinner</button>
+</div>
+
+<p class="margin2">
+Of course, instead of only adding the spinner class to elements, you can also use an element which already has the class.
+Then, give this element an relative position: <span class="code tt">.spinner { position: relative; }</span>.
+</p>
+
+<h2>Things to consider</h2>
+
+<p>
+The element you add the spinner class to needs to have an absolute, fixed or relative position.
+So remember to give it the style <span class="code tt" style="white-space: nowrap">position: relative</span> if the element doesn't have an absolute or fixed position.
+</p>
+
+<p class="margin">
+Also remember that the spinner class occupies the <span class="code tt">:before</span> pseudo class.
+If you rather like to use <span class="code tt">:after</span>, change the CSS accordingly.
+</p>
+
+<h2>Add an animation to your spinner</h2>
+
+<p>If you want to make your spinner even nicer by adding zoom animations to it, read the article <a href="/loading-spinner-with-animation">loading spinner with animation</a>:</p>
+
+<div class="demo" id="animation-demo-container" style="padding-bottom: 0;">
+<button class="button" onclick="addSpinner($('#animation-demo-container'))" style="margin: 0 15px 10px 0;">Add spinner</button><button class="button" onclick="removeSpinner($('#animation-demo-container'))" style="margin: 0 0 10px 0;">Remove spinner</button>
+</div>
+
+<style>
+@keyframes spinner-animation-demo {
+  to {transform: rotate(360deg);}
+}
+
+.spinner-animation-demo,
+.spinner-animation-demo:before {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+}
+
+.spinner-animation-demo:before {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #000;
+  animation: spinner-animation-demo .6s linear infinite;
+}
+
+.spinner-animation-demo-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+.spinner-animation-demo-add,
+.spinner-animation-demo-remove {
+  animation-fill-mode: both;
+  animation-duration: .4s;
+}
+
+.spinner-animation-demo-add {
+  animation-name: spinner-animation-demo-add;
+}
+
+@keyframes spinner-animation-demo-add {
+  from {transform: scale(0);}
+  to {transform: scale(1);}
+}
+
+.spinner-animation-demo-remove {
+  animation-name: spinner-animation-demo-remove;
+}
+
+@keyframes spinner-animation-demo-remove {
+  to {transform: scale(0);}
+}
+</style>
+
+<script>
+function addSpinner(el, static_pos)
+{
+  var spinner = el.children('.spinner-animation-demo');
+  if (spinner.length && !spinner.hasClass('spinner-animation-demo-remove')) return null;
+  !spinner.length && (spinner = $('<div class="spinner-animation-demo' + (static_pos ? '' : ' spinner-animation-demo-absolute') + '"/>').appendTo(el));
+  animateSpinner(spinner, 'add');
+}
+
+function removeSpinner(el, complete)
+{
+  var spinner = el.children('.spinner-animation-demo');
+  spinner.length && animateSpinner(spinner, 'remove', complete);
+}
+
+function animateSpinner(el, animation, complete)
+{
+  if (el.data('animating')) {
+    el.removeClass(el.data('animating')).data('animating', null);
+    el.data('animationTimeout') && clearTimeout(el.data('animationTimeout'));
+  }
+  el.addClass('spinner-animation-demo-' + animation).data('animating', 'spinner-animation-demo-' + animation);
+  el.data('animationTimeout', setTimeout(function() { animation == 'remove' && el.remove(); complete && complete(); }, parseFloat(el.css('animation-duration')) * 1000));
+}
+</script>
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
