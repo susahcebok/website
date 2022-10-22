@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>jBox by Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="jBox is a jQuery plugin that makes it easy to create customizable tooltips, modal windows, image galleries and more.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox" class="active">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<nav class="jBox-nav">
+  <a href="/jBox/get_started">Get Started</a>
+  <a href="/jBox/documentation">Documentation</a>
+  <a href="/jBox/options">Options</a>
+  <a href="/jBox/methods">Methods</a>
+  <a href="/jBox/demos">Demos</a>
+  <div class="jBox-nav__spacer"></div>
+  <a class="jBox-nav__download-button nav-download" href="//github.com/StephanWagner/jBox/releases" target="_blank"><span class="icon-download"></span>Download @ Github</a>
+  <div class="jBox-nav__github-button">
+    <a class="github-button" href="https://github.com/StephanWagner/jBox" data-icon="octicon-star" data-show-count="true" aria-label="Star StephanWagner/jBox on GitHub">Star</a>
+  </div>
+</nav>
+
+<h1 class="jBox-intro">jBox is a jQuery plugin that makes it easy to create<br>
+customizable tooltips, modal windows, image galleries and more</h1>
+
+<div class="line demo-title-line">
+<div class="demo-title" style="width: 100px; margin-left: -50px">Tooltips</div>
+</div>
+
+<div class="demo-buttons clearfix">
+<div id="Tooltip-1" class="demo-button">Hover me</div>
+<div id="Tooltip-2" class="demo-button">Hover me</div>
+<div id="Tooltip-3" class="demo-button">Hover me</div>
+<div id="Tooltip-4" class="demo-button">Hover me</div>
+<div id="Tooltip-5" class="demo-button">Hover me</div>
+<div id="Tooltip-6" class="demo-button">Hover me</div>
+<div id="Tooltip-7" class="demo-button demo-button-click noselect">Click me</div>
+<div id="Tooltip-8" class="demo-button demo-button-click noselect">Click me</div>
+</div>
+
+<div class="line demo-title-line">
+<div class="demo-title" style="width: 160px; margin-left: -80px">Modal Windows</div>
+</div>
+
+<div class="demo-buttons clearfix">
+<div id="Modal-1" class="demo-button demo-button-click noselect">Click me</div>
+<div id="Modal-2" class="demo-button demo-button-click noselect">Click me</div>
+<div id="Modal-3" class="demo-button demo-button-click noselect">Click me</div>
+<div class="demo-button demo-button-click noselect" data-confirm onclick="new jBox('Notice', {content: 'Yay! You clicked the confirm button', color: 'green', attributes: {y: 'bottom'}})">Click me</div>
+</div>
+
+<div class="line demo-title-line">
+<div class="demo-title" style="width: 100px; margin-left: -50px">Notices</div>
+</div>
+
+<div class="demo-buttons clearfix">
+<div id="Notice-1" class="demo-button demo-button-notice demo-button-click noselect">Click me</div>
+<div id="Notice-2" class="demo-button demo-button-notice demo-button-click noselect">Click me</div>
+<div id="Notice-3" class="demo-button demo-button-notice demo-button-click noselect">Click me</div>
+<div id="Notice-4" class="demo-button demo-button-notice demo-button-click noselect">Click me</div>
+</div>
+
+<div class="line demo-title-line">
+<div class="demo-title" style="width: 100px; margin-left: -50px;">Images</div>
+</div>
+
+<div class="demo-buttons clearfix">
+<a href="/img/jBox/demo/image1.jpg" data-jbox-image="gallery1" title="Navigate with your keyboard: Press the [right] or [left] key" class="demo-img"><img src="/img/jBox/demo/image1-preview.jpg" alt=""></a>
+<a href="/img/jBox/demo/image2.jpg" data-jbox-image="gallery1" title="jBox is smart, the next image gets preloaded" class="demo-img"><img src="/img/jBox/demo/image2-preview.jpg" alt=""></a>
+<a href="/img/jBox/demo/image3.jpg" data-jbox-image="gallery1" title="You can easily group your images into galleries" class="demo-img"><img src="/img/jBox/demo/image3-preview.jpg" alt=""></a>
+<a href="/img/jBox/demo/image4.jpg" data-jbox-image="gallery1" title="As usual, attaching jBox to images is easy as pie" class="demo-img"><img src="/img/jBox/demo/image4-preview.jpg" alt=""></a>
+<a href="/img/jBox/demo/NOT-FOUND.jpg" data-jbox-image="gallery1" title="You can adjust this image-not-found notice with CSS"></a>
+</div>
+
+<div class="line demo-title-line">
+<div class="demo-title" style="width: 140px; margin-left: -70px">Playground</div>
+</div>
+
+<div class="demo-buttons clearfix">
+<div id="DemoInception" class="demo-button demo-button-click noselect">Inception</div>
+<div id="DemoAvatars" class="demo-button demo-button-click noselect">Avatars</div>
+<div id="DemoLogin" class="demo-button demo-button-click noselect">Login</div>
+</div>
+
+<div class="clearfix" id="jBox-features">
+
+<div class="feature-container">
+<div class="feature-icon icon-ok"></div>
+<div class="feature-title">Lightweight</div>
+<div class="feature-description">Less than 30 KB when minified and gzipped</div>
+</div>
+
+<div class="feature-container">
+<div class="feature-icon icon-ok"></div>
+<div class="feature-title">Extendable</div>
+<div class="feature-description">Easily create your own jBox plugins with custom behaviors</div>
+</div>
+
+<div class="feature-container">
+<div class="feature-icon icon-ok"></div>
+<div class="feature-title">Responsive</div>
+<div class="feature-description">jBox adjust to all your devices</div>
+</div>
+
+</div>
+
+<a href="https://github.com/StephanWagner/jBox/releases" class="button jBox-download-button" target="_blank">Download @ GitHub</a>
+
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+<script src="/js/jbox.js"></script>
+</body>
+</html>
