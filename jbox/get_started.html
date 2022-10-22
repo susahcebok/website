@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Get started with jBox</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="jBox is a jQuery plugin that makes it easy to create customizable tooltips, modal windows, image galleries and more.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox" class="active">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<nav class="jBox-nav">
+  <a href="/jBox/get_started" class="active">Get Started</a>
+  <a href="/jBox/documentation">Documentation</a>
+  <a href="/jBox/options">Options</a>
+  <a href="/jBox/methods">Methods</a>
+  <a href="/jBox/demos">Demos</a>
+  <div class="jBox-nav__spacer"></div>
+  <a class="jBox-nav__download-button nav-download" href="//github.com/susahcebok/jBox/releases" target="_blank"><span class="icon-download"></span>Download @ Github</a>
+  <div class="jBox-nav__github-button">
+    <a class="github-button" href="https://github.com/susahcebok/jBox" data-icon="octicon-star" data-show-count="true" aria-label="Star susahcebok/jBox on GitHub">Star</a>
+  </div>
+</nav>
+
+<h2>Installation<span class="permalink-anchor" id="installation"></span><a href="#installation" class="permalink icon-link"></a></h2>
+
+<h3 style="margin-top: 0;">ES6</h3>
+
+<p class="margin">You can install jBox via <a href="https://www.npmjs.com/package/jbox" target="_blank">npm</a>:</p>
+
+<div class="syntax tt">
+<pre class="text" style="font-family:monospace;">npm install --save jbox</pre></div>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #FF0000;">import</span> jBox from <span style="color: #3366CC;">'jbox'</span><span style="color: #339933;">;</span>
+<span style="color: #FF0000;">import</span> <span style="color: #3366CC;">'jbox/dist/jBox.all.css'</span><span style="color: #339933;">;</span></pre></div>
+
+<h3 style="margin-top: 30px;">CDN</h3>
+
+<p><a href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a> is a great <a href="/jBox/cdn">CDN</a> choice for jBox:</p>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">script</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">script</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">script</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.js&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">script</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">link</span> <span style="color: #000066;">href</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.css&quot;</span> <span style="color: #000066;">rel</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;stylesheet&quot;</span>&gt;</span></pre></div>
+
+<h2>Tooltips<span class="permalink-anchor" id="tooltips"></span><a href="#tooltips" class="permalink icon-link"></a></h2>
+
+<p>Create a new instance of jBox Tooltip and attach it to elements:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Tooltip'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'.tooltip'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<p>Now elements with <span class="code tt">class="tooltip"</span> will open tooltips:</p>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">class</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;tooltip&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;My tooltip&quot;</span>&gt;</span>Hover me!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">span</span> <span style="color: #000066;">class</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;tooltip&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Another tooltip&quot;</span>&gt;</span>Hover me!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">span</span>&gt;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Tooltip', {
+    attach: '.tooltip'
+  });
+});
+</script>
+
+<div class="demo">
+<span style="padding: 0 10px 0 0; cursor: pointer;" class="tooltip" title="My tooltip">Hover me!</span><span class="tooltip" style="padding: 0 0 0 10px; cursor: pointer;" title="Another tooltip">Hover me!</span>
+</div>
+
+<h2>Modal windows<span class="permalink-anchor" id="modal-windows"></span><a href="#modal-windows" class="permalink icon-link"></a></h2>
+
+<p>You can set up modal windows the same way as tooltips.<br>
+But most of times you'd want more variety, like a title or HTML content:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  width<span style="color: #339933;">:</span> <span style="color: #CC0000;">300</span><span style="color: #339933;">,</span>
+  height<span style="color: #339933;">:</span> <span style="color: #CC0000;">100</span><span style="color: #339933;">,</span>
+  attach<span style="color: #339933;">:</span> <span style="color: #3366CC;">'#myModal'</span><span style="color: #339933;">,</span>
+  title<span style="color: #339933;">:</span> <span style="color: #3366CC;">'My Modal Window'</span><span style="color: #339933;">,</span>
+  content<span style="color: #339933;">:</span> <span style="color: #3366CC;">'&lt;i&gt;Hello there!&lt;/i&gt;'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">div</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;myModal&quot;</span>&gt;</span>Click me to open a modal window!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">div</span>&gt;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Modal', {
+    width: 300,
+    height: 100,
+    attach: '#myModal',
+    title: 'My Modal Window',
+    content: '<i>Hello there!</i>',
+    blockScrollAdjust: ['header']
+  });
+});
+</script>
+
+<div class="demo">
+<div style="cursor: pointer" id="myModal">Click me to open a modal window!</div>
+</div>
+
+<h2>Confirm windows<span class="permalink-anchor" id="confirm-windows"></span><a href="#confirm-windows" class="permalink icon-link"></a></h2>
+
+<p>Confirm windows are modal windows which requires the user to confirm a click action on an element.
+Give the element the <span class="tt code">data-confirm</span> attribute to attach it:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Confirm'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  confirmButton<span style="color: #339933;">:</span> <span style="color: #3366CC;">'Do it!'</span><span style="color: #339933;">,</span>
+  cancelButton<span style="color: #339933;">:</span> <span style="color: #3366CC;">'Nope'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">div</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;doit()&quot;</span> data-confirm<span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Do you really want to do this?&quot;</span>&gt;</span>Click me!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">div</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">a</span> <span style="color: #000066;">href</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;https://stephanwagner.me&quot;</span> data-confirm<span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;Do you really want to leave this page?&quot;</span>&gt;</span>Click me!<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">a</span>&gt;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Confirm', {
+    confirmButton: 'Do it!',
+    cancelButton: 'Nope',
+    blockScrollAdjust: ['header']
+  });
+});
+
+function doit() {
+  new jBox('Notice', {content: 'Yay! You did it!', color: 'green', attributes: {y: 'bottom'}});
+}
+</script>
+
+<div class="demo">
+<span style="cursor: pointer; padding: 0 10px 0 0" onclick="doit()" data-confirm="Do you really want to do this?">Click me!</span>
+<a href="https://stephanwagner.me/jBox" data-confirm="Do you really want to leave this page?">Click me!</a>
+</div>
+
+<h2>Notices<span class="permalink-anchor" id="notices"></span><a href="#notices" class="permalink icon-link"></a></h2>
+
+<p>A notice will open automatically and destroy itself after some time:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Notice'</span><span style="color: #339933;">,</span> <span style="color: #009900;">&#123;</span>
+  content<span style="color: #339933;">:</span> <span style="color: #3366CC;">'Hurray! A notice!'</span><span style="color: #339933;">,</span>
+  color<span style="color: #339933;">:</span> <span style="color: #3366CC;">'blue'</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  $('#myNotice').click(function() {
+    new jBox('Notice', {
+      offset: {
+        y: 50
+      },
+      content: 'Hurray! A notice!',
+      color: 'blue'
+    });
+  });
+});
+</script>
+
+<div class="demo">
+<div style="cursor: pointer" id="myNotice">Click me to show a notice!</div>
+</div>
+
+<h2>Images<span class="permalink-anchor" id="images"></span><a href="#images" class="permalink icon-link"></a></h2>
+
+<p>Easily attach jBox to your images to open a lightbox:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Image'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre><pre class="html5" style="font-family:monospace;">&nbsp;
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">a</span> <span style="color: #000066;">href</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;/image1_large.jpg&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;My title 1&quot;</span> data-jbox-image<span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;gallery1&quot;</span>&gt;&lt;<span style="color: #000000; font-weight: bold;">img</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;/image1_small.jpg&quot;</span> <span style="color: #000066;">alt</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">a</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">a</span> <span style="color: #000066;">href</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;/image2_large.jpg&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;My title 2&quot;</span> data-jbox-image<span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;gallery1&quot;</span>&gt;&lt;<span style="color: #000000; font-weight: bold;">img</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;/image2_small.jpg&quot;</span> <span style="color: #000066;">alt</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">a</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">a</span> <span style="color: #000066;">href</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;/image3_large.jpg&quot;</span> <span style="color: #000066;">title</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;My title 3&quot;</span> data-jbox-image<span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;gallery1&quot;</span>&gt;&lt;<span style="color: #000000; font-weight: bold;">img</span> <span style="color: #000066;">src</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;/image3_small.jpg&quot;</span> <span style="color: #000066;">alt</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;&quot;</span>&gt;&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">a</span>&gt;</span></pre></div>
+
+<script>
+$(document).ready(function() {
+  new jBox('Image', {
+    blockScrollAdjust: ['header']
+  })
+});
+</script>
+
+<div class="demo clearfix">
+<div class="demo-buttons">
+<a href="/img/jBox/demo/image1.jpg" data-jbox-image="gallery1" title="Navigate with your keyboard: Press the [right] or [left] key" class="demo-img"><img src="/img/jBox/demo/image1-preview.jpg" alt=""></a>
+<a href="/img/jBox/demo/image2.jpg" data-jbox-image="gallery1" title="jBox is smart, the next image gets preloaded" class="demo-img"><img src="/img/jBox/demo/image2-preview.jpg" alt=""></a>
+<a href="/img/jBox/demo/image3.jpg" data-jbox-image="gallery1" title="You can easily group your images into galleries" class="demo-img"><img src="/img/jBox/demo/image3-preview.jpg" alt=""></a>
+<a href="/img/jBox/demo/image4.jpg" data-jbox-image="gallery1" title="As usual, attaching jBox to images is easy as pie" class="demo-img"><img src="/img/jBox/demo/image4-preview.jpg" alt=""></a>
+</div>
+</div>
+
+<h2>Learn more</h2>
+
+<p>These few examples are very basic.
+The jBox library is quite powerful and offers a vast variety of options to customize appearance and behavior.
+Learn more in the <a href="/jBox/documentation">documentation</a>.</p>
+
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
