@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>jBox Methods</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="jBox is a jQuery plugin that makes it easy to create customizable tooltips, modal windows, image galleries and more.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox" class="active">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<nav class="jBox-nav">
+  <a href="/jbox/get_started">Get Started</a>
+  <a href="/jbox/documentation">Documentation</a>
+  <a href="/jbox/options">Options</a>
+  <a href="/jbox/methods" class="active">Methods</a>
+  <a href="/jbox/demos">Demos</a>
+  <div class="jBox-nav__spacer"></div>
+  <a class="jBox-nav__download-button nav-download" href="//github.com/susahcebok/jBox/releases" target="_blank"><span class="icon-download"></span>Download @ Github</a>
+  <div class="jBox-nav__github-button">
+    <a class="github-button" href="https://github.com/susahcebok/jBox" data-icon="octicon-star" data-show-count="true" aria-label="Star susahcebok/jBox on GitHub">Star</a>
+  </div>
+</nav>
+
+<div class="jBox-headline-placeholder"></div>
+
+<p>The best way to use methods on your jBoxes is to save your jBox in a variable:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">var</span> myModal <span style="color: #339933;">=</span> <span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+myModal.<span style="color: #660066;">setTitle</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'My Title'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+myModal.<span style="color: #660066;">setContent</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'My Content'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+myModal.<span style="color: #660066;">open</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<p>All methods return the jBox instance so you can chain them:</p>
+
+<div class="syntax tt">
+<pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">var</span> myModal <span style="color: #339933;">=</span> <span style="color: #000066; font-weight: bold;">new</span> jBox<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'Modal'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">setTitle</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'My Title'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">setContent</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'My Content'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">open</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></div>
+
+<table class="api" style="margin-top: 50px">
+
+<tr class="title">
+<td colspan="2"><h3>Open and close<span class="permalink-anchor" id="open-and-close"></span><a href="#open-and-close" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.open(<span class="code tt">options</span>)</td>
+<td>Opens the jBox.
+You can set a new target with the option <span class="code tt">target</span>, e.g. <span class="code tt"><span style="white-space: nowrap">{target:</span> <span style="white-space: nowrap">$('#newTarget')}</span></span>.
+If your jBox has an opening delay, you can force it to open immediately with the option <span class="code tt">ignoreDelay</span>, e.g. <span class="code tt"><span style="white-space: nowrap">{ignoreDelay:</span> <span style="white-space: nowrap">true}</span></span>.
+To set new AJAX content when opening the jBox, you can pass an AJAX object, e.g. <span class="code tt code-prevent-wrap">{ajax: {url: 'URL'}}</span></td>
+</tr>
+
+<tr class="option">
+<td>.close(<span class="code tt">options</span>)</td>
+<td>Closes the jBox.
+If your jBox has a closing delay, you can force it to close immediately with the option <span class="code tt">ignoreDelay</span>, e.g. <span class="code tt"><span style="white-space: nowrap">{ignoreDelay:</span> <span style="white-space: nowrap">true}</span></span></td>
+</tr>
+
+<tr class="option odd">
+<td>.toggle(<span class="code tt">options</span>)</td>
+<td>Calls the method <span class="code tt">open</span> when jBox is closed and <span class="code tt">close</span> when it is open</td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Dimensions<span class="permalink-anchor" id="dimensions"></span><a href="#dimensions" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.setWidth(<span class="code tt">value</span>)<br>
+.setHeight(<span class="code tt">value</span>)
+</td>
+<td>Sets the CSS width and height of the content container. Optional you can set a second argument to disable the automatic repositioning of jBox, e.g. <span class="code tt">.setWidth(200, true)</span></td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Attaching jBox<span class="permalink-anchor" id="attaching-jbox"></span><a href="#attaching-jbox" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.attach(<span class="code tt">jQuery selector</span>)</td>
+<td>Attaches your jBox to elements.
+Providing a jQuery selector is optional. If you don't tell this method which elements to use, it will use the selector defined in the options.
+This method should be called when elements, which should open or close a jBox, are being created in runtime</td>
+</tr>
+
+<tr class="option">
+<td>.detach(<span class="code tt">jQuery selector</span>)</td>
+<td>Removes the open and close function from elements</td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Content<span class="permalink-anchor" id="jbox-content"></span><a href="#jbox-content" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.setTitle(<span class="code tt">title</span>)</td>
+<td>Sets the title of your jBox. If there is no title yet, it will be created.
+jBox will reposition if dimensions change, to disable, pass true as second argument: <span class="code tt" style="white-space: nowrap">.setTitle('myTitle', true)</span></td>
+</tr>
+
+<tr class="option">
+<td>.setContent(<span class="code tt">content</span>)</td>
+<td>Sets the content of your jBox.
+You can use jQuery elements to append elements (set CSS style display to none so the elements won't show up on your page).
+jBox will reposition if dimensions change, to disable, pass true as second argument: <span class="code tt code-prevent-wrap"><span style="white-space: nowrap">.setContent('myContent', </span><span style="white-space: nowrap">true)</span></span></td>
+</tr>
+
+<tr class="option odd">
+<td>.ajax(<span class="code tt">options</span>)</td>
+<td>Reloads the AJAX request.
+You can pass the options <span class="code tt">url</span> and <span class="code tt">data</span>, e.g. <span class="code tt"><span style="white-space: nowrap">{url:</span> <span style="white-space: nowrap">'/example.php',</span> <span style="white-space: nowrap">data: 'id=82'}</span></span> or any <a href="http://api.jquery.com/jquery.ajax/">jQuery ajax Option</a></td>
+</tr>
+
+<tr class="option">
+<td>.cancelAjax()</td>
+<td>Cancels a running AJAX request</td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Audio<span class="permalink-anchor" id="audio"></span><a href="#audio" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.audio(<span class="code tt">url</span>, <span class="code tt">volume</span>)</td>
+<td>Plays an audio file. Don't add the file extension, jBox will look for an <span class="code tt">.mp3</span> and an <span class="code tt">.ogg</span> file
+</td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Position<span class="permalink-anchor" id="position"></span><a href="#position" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.position(<span class="code tt">options</span>)</td>
+<td>Recalculates your jBoxes position.
+You can set a new target with the option <span class="code tt">target</span>, e.g. <span class="code tt"><span style="white-space: nowrap">{target:</span> <span style="white-space: nowrap">$('#newTarget')}</span></span></td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Animation<span class="permalink-anchor" id="animation"></span><a href="#animation" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.animate(<span class="code tt">animation</span>, <span class="code tt">options</span>)</td>
+<td>Animates for your jBox or any other element. You can use the animations
+<span class="code tt">'tada'</span>,
+<span class="code tt">'tadaSmall'</span>,
+<span class="code tt">'flash'</span>,
+<span class="code tt">'shake'</span>,
+<span class="code tt">'pulseUp'</span>,
+<span class="code tt">'pulseDown'</span>,
+<span class="code tt">'popIn'</span>,
+<span class="code tt">'popOut'</span>,
+<span class="code tt">'fadeIn'</span>,
+<span class="code tt">'fadeOut'</span>,
+<span class="code tt">'slideUp'</span>,
+<span class="code tt">'slideRight'</span>,
+<span class="code tt">'slideLeft'</span> and
+<span class="code tt">'slideDown'</span>.
+The animation method is independent from the option <span class="code tt">animation</span>.
+By default this method will animate the jBox wrapper, to animate another element set the option <span class="code tt">element</span>, e.g. <span class="code tt">{element: $('#animateMe')}</span>.
+To execute a function when the animation is finished use the option <span class="code tt">complete</span>, e.g. <span class="code tt">{complete: function () { $('#animateMe').remove(); }}</span>
+</td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Disable and enable<span class="permalink-anchor" id="disable-and-enable"></span><a href="#disable-and-enable" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.disable()</td>
+<td>Disables your jBox, you won't be able to open or close it until enabled</td>
+</tr>
+
+<tr class="option">
+<td>.enable()</td>
+<td>Enables your jBox, so you can close and open it again</td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Visibility<span class="permalink-anchor" id="visibility"></span><a href="#visibility" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.hide()</td>
+<td>Disables and hides the jBox</td>
+</tr>
+
+<tr class="option">
+<td>.show()</td>
+<td>Enables and shows your jBox again</td>
+</tr>
+
+<tr class="title">
+<td colspan="2"><h3>Destroy jBox<span class="permalink-anchor" id="destroy-jbox"></span><a href="#destroy-jbox" class="permalink icon-link"></a></h3></td>
+</tr>
+
+<tr class="option odd">
+<td>.destroy()</td>
+<td>Destroys your jBox and removes it from DOM</td>
+</tr>
+
+</table>
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
