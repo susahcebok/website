@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Animate any element · Ferry Ayunda</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="Ferry Ayunda, bungferry@my.id">
+<meta name="description" content="Animate any element with predefined CSS keyframe animations.">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-code.png">
+<link rel="manifest" href="">
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a href="/" class="active">Blog</a>
+    <a href="/tools">Tools</a>
+    <a href="/jBox">jBox</a>
+    <a href="https://www.facebook.com/bungferry.wa" id="stephan"><span>Ferry Ayunda</span></a>
+  </nav>
+</header>
+
+<main>
+<div class="content-wrapper container">
+
+<div class="article-author">December 2016</div>
+
+<h1>Animate any element</h1>
+
+<p>I created a custom animation function to add short animations to elements.
+The elements will be animated with <a href="https://developer.mozilla.org/en/docs/Web/CSS/@keyframes" target="_blank">CSS keyframes</a> rather than with the <a href="https://api.jquery.com/animate/" target="_blank">build in animation function from jQuery</a>.</p>
+
+<h2>The code</h2>
+
+<p>Check out the following <a href="https://jsfiddle.net/StephanWagner/4qo94phy" target="_blank">fiddle</a> which has all the JavaScript, HTML and CSS you need:</p>
+
+<div class="fiddle-embed">
+<iframe width="100%" height="272" src="https://jsfiddle.net/StephanWagner/4qo94phy/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+</div>
+
+<h2>Demo</h2>
+
+<p>To animate an element, simply use the function <span class="code tt">animate(element, animation, complete)</span> and pass the target jQuery element and the name of the animation.
+You can use the animations
+<span class="code tt">tada</span>,
+<span class="code tt">tadaSmall</span>,
+<span class="code tt">flash</span>,
+<span class="code tt">shake</span>,
+<span class="code tt">pulseUp</span>,
+<span class="code tt">pulseDown</span>,
+<span class="code tt">popIn</span> and
+<span class="code tt">popOut</span>.</p>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">button</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;target-tada&quot;</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;animateEl($('#target-tada'), 'tada')&quot;</span>&gt;</span>Tada<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">button</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">button</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;target-shake&quot;</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;animateEl($('#target-shake'), 'shake')&quot;</span>&gt;</span>Shake<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">button</span>&gt;</span></pre></div>
+
+<style>
+[class^="animated-"],
+[class*=" animated-"] {
+  animation-fill-mode: both;
+}
+
+@keyframes tada {
+  0% {transform: scale(1);}
+  10%, 20% {transform: scale(0.8) rotate(-4deg);}
+  30%, 50%, 70%, 90% {transform: scale(1.2) rotate(4deg);}
+  40%, 60%, 80% {transform: scale(1.2) rotate(-4deg);}
+  100% {transform: scale(1) rotate(0);}
+}
+
+.animated-tada {
+  animation: tada 1s;
+}
+
+@keyframes tadaSmall {
+  0% {transform: scale(1);}
+  10%, 20% {transform: scale(0.9) rotate(-2deg);}
+  30%, 50%, 70%, 90% {transform: scale(1.1) rotate(2deg);}
+  40%, 60%, 80% {transform: scale(1.1) rotate(-2deg);}
+  100% {transform: scale(1) rotate(0);}
+}
+
+.animated-tadaSmall {
+  animation: tadaSmall 1s;
+}
+
+@keyframes flash {
+  0%, 50%, 100% {opacity: 1;}
+  25%, 75% {opacity: 0;}
+}
+
+.animated-flash {
+  animation: flash .5s;
+}
+
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+  20%, 60% {transform: translateX(-6px);}
+  40%, 80% {transform: translateX(6px);}
+}
+
+.animated-shake {
+  animation: shake .4s;
+}
+
+@keyframes pulseUp {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.15);}
+  100% {transform: scale(1);}
+}
+
+.animated-pulseUp {
+  animation: pulseUp .25s;
+}
+
+@keyframes pulseDown {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.85);}
+  100% {transform: scale(1);}
+}
+
+.animated-pulseDown {
+  animation: pulseDown .25s;
+}
+
+@keyframes popIn {
+  0% {transform: scale(0);}
+  50% {transform: scale(1.1);}
+  100% {transform: scale(1);}
+}
+
+.animated-popIn {
+  animation: popIn .25s;
+}
+
+@keyframes popOut {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.1);}
+  100% {transform: scale(0);}
+}
+
+.animated-popOut {
+  animation: popOut .25s;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.animated-fadeIn {
+  animation: fadeIn .2s;
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.animated-fadeOut {
+  animation: fadeOut .2s;
+}
+</style>
+
+<script>
+var animationSpeeds = {
+  'tada': 1000,
+  'tadaSmall': 1000,
+  'flash': 500,
+  'shake': 400,
+  'pulseUp': 250,
+  'pulseDown': 250,
+  'popIn': 250,
+  'popOut': 250,
+  'fadeIn': 200,
+  'fadeOut': 200
+};
+
+function animateEl(element, animation, complete)
+{
+  if (!element instanceof jQuery || !$(element).length || !animation) return null;
+
+  if (element.data('animating')) {
+    element.removeClass(element.data('animating')).data('animating', null);
+    element.data('animationTimeout') && clearTimeout(element.data('animationTimeout'));
+  }
+
+  element.addClass('animated-' + animation).data('animating', 'animated-' + animation);
+  element.data('animationTimeout', setTimeout((function() { element.removeClass(element.data('animating')).data('animating', null); complete && complete(); }), animationSpeeds[animation]));
+}
+</script>
+
+<div class="demo">
+<button class="button" id="target-tada" onclick="animateEl($('#target-tada'), 'tada')">Tada</button>
+<button class="button" id="target-shake" onclick="animateEl($('#target-shake'), 'shake')">Shake</button>
+</div>
+
+<p class="margin2">You can pass a function as the <span class="code tt">complete</span> argument, which will get triggered when the animation is finished.
+Also, it's a good idea to use the <span class="code tt">popIn</span> or <span class="code tt">fadeIn</span> animations when you create an element:</p>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">button</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;animateEl($('&lt;div/&gt;</span></span>', {id: 'target'}).appendTo($('body')), 'popIn')&quot;&gt;Pop In<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">button</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">button</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;animateEl($('#target'), 'popOut', function () { $('#target').remove(); })&quot;</span>&gt;</span>Pop Out<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">button</span>&gt;</span></pre></div>
+
+<style>
+#target-pop {
+  box-sizing: border-box;
+  width: 30px;
+  height: 29px;
+  border-radius: 4px;
+  position: absolute;
+  top: calc(50% - 14.5px);
+  left: calc(50% - 14.5px);
+  background: #7d0;
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, .2), inset -1px -1px 0 0 rgba(0, 0, 0, .05);
+}
+
+@media (max-width: 600px) {
+
+  #target-pop {
+    right: 15px;
+    left: auto;
+  }
+
+}
+</style>
+
+<div class="demo" id="demo-pop">
+<button class="button" id="demo-popIn" onclick="$('#demo-popIn').attr('disabled', true); animateEl($('<div/>', {id: 'target-pop'}).appendTo($('#demo-pop')), 'popIn', function () { $('#demo-popOut').attr('disabled', false); })">Pop In</button>
+<button class="button" id="demo-popOut" onclick="$('#demo-popOut').attr('disabled', true); animateEl($('#target-pop'), 'popOut', function () { $('#target-pop').remove(); $('#demo-popIn').attr('disabled', false); })" disabled="disabled">Pop Out</button>
+</div>
+
+<style>
+#target-pulse {
+  box-sizing: border-box;
+  height: 29px;
+  border-radius: 4px;
+  display: inline-block;
+  background: #7d0;
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, .2), inset -1px -1px 0 0 rgba(0, 0, 0, .05);
+  line-height: 29px;
+  padding: 0 15px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 15px;
+  font-family: Verdana, sans-serif;
+}
+
+.button-pulse {
+  font-weight: bold;
+  color: #fff;
+  font-size: 15px;
+  font-family: Verdana, sans-serif;
+}
+
+#target-pulse span {
+  display: block;
+}
+</style>
+
+<p class="margin2">I like to use the <span class="code tt">pulseUp</span> and <span class="code tt">pulseDown</span> animations in compination with numbers:</p>
+
+<div class="syntax tt">
+<pre class="html5" style="font-family:monospace;"><span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">button</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;$('#target').html(parseInt($('#target').html()) + 1); animateEl($('#target'), 'pulseUp')&quot;</span>&gt;</span>+1<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">button</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">button</span> <span style="color: #000066;">onclick</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;$('#target').html(parseInt($('#target').html()) - 1); animateEl($('#target'), 'pulseDown')&quot;</span>&gt;</span>-1<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">button</span>&gt;</span>
+<span style="color: #009900;">&lt;<span style="color: #000000; font-weight: bold;">div</span> <span style="color: #000066;">id</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;target&quot;</span>&gt;</span>100<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><span style="color: #000000; font-weight: bold;">div</span>&gt;</span></pre></div>
+
+<div class="demo" id="demo-pop">
+<button class="button button-pulse" onclick="$('#target-pulse span').html(parseInt($('#target-pulse span').html()) + 1); animateEl($('#target-pulse span'), 'pulseUp')">+1</button>
+<button class="button button-pulse" onclick="$('#target-pulse span').html(parseInt($('#target-pulse span').html()) - 1); animateEl($('#target-pulse span'), 'pulseDown')">-1</button>
+<div id="target-pulse"><span>100</span></div>
+</div>
+
+
+
+</div>
+</main>
+
+<footer>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
